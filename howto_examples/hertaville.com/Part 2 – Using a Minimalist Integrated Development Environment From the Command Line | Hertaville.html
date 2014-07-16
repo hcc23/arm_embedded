@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist
+ Integrated Development Environment From the Command Line | Hertaville</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/style.css">
+<link rel="pingback" href="http://hertaville.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="Hertaville » Feed" href="http://hertaville.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hertaville » Comments Feed" href="http://hertaville.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hertaville » STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line Comments Feed" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/feed/">
+<link rel="stylesheet" id="jetpack-widgets-css" href="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/widgets.css" type="text/css" media="all">
+<link rel="stylesheet" id="sharedaddy-css" href="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/sharing.css" type="text/css" media="all">
+<link rel="stylesheet" id="core3.0-css" href="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/shCore.css" type="text/css" media="all">
+<link rel="stylesheet" id="core-Default3.0-css" href="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/shCoreDefault.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-Default3.0-css" href="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/shThemeDefault.css" type="text/css" media="all">
+<script type="text/javascript" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/comment-reply.js"></script>
+<script type="text/javascript" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/jquery.js"></script>
+<script type="text/javascript" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/jquery-migrate.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://hertaville.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://hertaville.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">
+<link rel="next" title="Hand Soldered a 32LQFP STM32F0 Microcontroller!" href="http://hertaville.com/2013/09/06/soldered-a-32lqfp-stm32f0-microcontroller/">
+<meta name="generator" content="WordPress 3.7.1">
+<link rel="canonical" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">
+<link rel="shortlink" href="http://wp.me/p2yfeU-g5">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32F0Discovery Under Linux Tutorial Part 2 - Using a Minimalist Integrated Development Environment From the Command Line">
+<meta property="og:url" content="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">
+<meta property="og:description" content="&nbsp;In this blog entry we will examine using a development environment based on command line tools which will include using the VIM (VImproved) text editor, the GDBTUI debugger along with the Texane's...">
+<meta property="og:site_name" content="Hertaville">
+<meta property="og:image" content="http://hertaville.com/wp-content/uploads/2013/09/untitled.png">
+<meta name="twitter:site" content="@jetpack">
+<meta name="twitter:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0107.png?w=240">
+<meta name="twitter:card" content="summary">
+<style>#xjlztsnchabxcucuweosderhxqnnypqn{border:solid 2px #fff !important;color:#fff !important;display:block !important;height:auto !important;margin:0 !important;opacity:0.9 !important;padding:7px 10px !important;position:fixed !important;visibility:visible !important;width:auto !important;z-index:2147483647 !important;-moz-border-radius:5px !important;border-radius:5px !important;-moz-box-shadow:0px 0px 20px #000 !important;box-shadow:0px 0px 20px #000 !important;}.xjlztsnchabxcucuweosderhxqnnypqn-blocked{color:#777 !important;display:inline !important;text-decoration:line-through !important;}#xjlztsnchabxcucuweosderhxqnnypqn br{display:block !important;}#xjlztsnchabxcucuweosderhxqnnypqn span{background:transparent !important;}#xjlztsnchabxcucuweosderhxqnnypqn div{border:0 !important;margin:0 !important;padding:0 !important;width:auto !important;letter-spacing:normal !important;font:13px Arial,Helvetica !important;text-align:left !important;text-shadow:none !important;text-transform:none !important;word-spacing:normal !important;}#xjlztsnchabxcucuweosderhxqnnypqn a{font-weight:normal !important;background:none !important;text-decoration:underline !important;color:#fff !important;}@media print{#xjlztsnchabxcucuweosderhxqnnypqn{display:none !important;}}</style></head>
+
+<body class="single single-post postid-997 single-format-standard">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://hertaville.com/" title="Hertaville" rel="home">Hertaville</a>
+					</span>
+				</div>
+				<div id="site-description">Welcome to Hertaville!</div>
+
+										<img src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/cropped-banner-electronics.jpg" alt="" height="198" width="940">
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-main-menu" class="menu"><li id="menu-item-689" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-689"><a href="http://www.hertaville.com/">Home</a></li>
+<li id="menu-item-731" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-731"><a href="http://hertaville.com/the-stm32f0discovery-board/">The STM32F0Discovery Board</a>
+<ul class="sub-menu">
+	<li id="menu-item-682" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-ancestor current-menu-parent current-custom-parent menu-item-has-children menu-item-682"><a href="http://hertaville.com/category/stm32f0discovery/">Free STM32F0 Development Environment</a>
+	<ul class="sub-menu">
+		<li id="menu-item-994" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-994"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</a></li>
+		<li id="menu-item-1012" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-1012"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line</a></li>
+		<li id="menu-item-683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-683"><a href="http://hertaville.com/2012/05/28/gcc-arm-toolchain-stm32f0discovery/">(MS Winows 7) – Legacy – Part 1 – Setting up the GCC ARM Toolchain</a></li>
+		<li id="menu-item-684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-684"><a href="http://hertaville.com/2012/06/25/using-the-eclipse-ide-gcc-arm/">(MS Winows 7) – Legacy – Part 2 – Setting up the Eclipse IDE</a></li>
+		<li id="menu-item-694" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-694"><a href="http://hertaville.com/2012/09/16/part-3-debugging-openocd-0-6-0/">(MS Winows 7) – Legacy – Part 3 – Setting up Debugging with the Eclipse IDE (OpenOCD 0.6.0)</a></li>
+	</ul>
+</li>
+	<li id="menu-item-681" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-681"><a href="http://hertaville.com/category/the-gcc-build-process/">The GCC Build Process</a>
+	<ul class="sub-menu">
+		<li id="menu-item-685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-685"><a href="http://hertaville.com/2012/06/28/an-overview-of-the-build-process/">An Overview of the Build Process</a></li>
+		<li id="menu-item-686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-686"><a href="http://hertaville.com/2012/06/29/a-sample-linker-script/">A Sample Linker Script</a></li>
+		<li id="menu-item-687" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-687"><a href="http://hertaville.com/2012/06/29/the-startup-file/">The Startup file</a></li>
+		<li id="menu-item-688" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-688"><a href="http://hertaville.com/2012/06/29/the-iotogglem0-project-folder-structure-and-the-makefile/">The iotogglem0 Project Folder Structure and the makefile</a></li>
+	</ul>
+</li>
+	<li id="menu-item-691" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-691"><a href="http://hertaville.com/category/peripherals/">STM32F0 Peripherals</a>
+	<ul class="sub-menu">
+		<li id="menu-item-692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-692"><a href="http://hertaville.com/2012/07/28/stm32f0-gpio-tutorial-part-1/">Understanding the STM32F0′s GPIO part 1</a></li>
+		<li id="menu-item-693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-693"><a href="http://hertaville.com/2012/09/01/understanding-the-stm32f0%E2%80%B2s-gpio-part-2/">Understanding the STM32F0′s GPIO part 2</a></li>
+		<li id="menu-item-706" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-706"><a href="http://hertaville.com/2012/09/29/external-interrupts-on-the-stm32f0/">External Interrupts on the STM32F0</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-702"><a href="http://hertaville.com/raspberry-pi/">The Raspberry Pi Board</a>
+<ul class="sub-menu">
+	<li id="menu-item-704" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-704"><a href="http://hertaville.com/2012/09/27/raspbian-raspberry-pi/">Installing Raspbian on the Raspberry Pi</a></li>
+	<li id="menu-item-868" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-868"><a href="http://hertaville.com/category/raspberry-pi-cross-development/">Raspberry Pi Cross Development</a>
+	<ul class="sub-menu">
+		<li id="menu-item-705" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-705"><a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain</a></li>
+		<li id="menu-item-708" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-708"><a href="http://hertaville.com/2013/01/11/remote-debugging/">Remote Debugging of Raspberry Pi Applications from Eclipse</a></li>
+		<li id="menu-item-849" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-849"><a href="http://hertaville.com/2013/07/19/cross-compiling-gtk-applications-for-the-raspberry-pi/">Cross Compiling GTK applications For the Raspberry Pi</a></li>
+	</ul>
+</li>
+	<li id="menu-item-869" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-869"><a href="http://hertaville.com/category/raspberry-pi-peripherals/">Raspberry Pi Peripherals</a>
+	<ul class="sub-menu">
+		<li id="menu-item-707" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-707"><a href="http://hertaville.com/2012/11/18/introduction-to-accessing-the-raspberry-pis-gpio-in-c/">Introduction to accessing the Raspberry Pi’s GPIO in C++ (Linux Way!)</a></li>
+		<li id="menu-item-710" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-710"><a href="http://hertaville.com/2013/04/01/interfacing-an-i2c-gpio-expander-mcp23017-to-the-raspberry-pi-using-c/">Interfacing an I2C GPIO expander (MCP23017) to the Raspberry Pi using C++</a></li>
+		<li id="menu-item-899" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-899"><a href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/">Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-766" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-766"><a href="http://hertaville.com/about/">About</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/" rel="prev"><span class="meta-nav">←</span> STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</a></div>
+					<div class="nav-next"><a href="http://hertaville.com/2013/09/06/soldered-a-32lqfp-stm32f0-microcontroller/" rel="next">Hand Soldered a 32LQFP STM32F0 Microcontroller! <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-997" class="post-997 post type-post status-publish format-standard hentry category-stm32f0discovery">
+					<h1 class="entry-title">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/" title="6:58 pm" rel="bookmark"><span class="entry-date">September 3, 2013</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://hertaville.com/author/halherta/" title="View all posts by halherta">halherta</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p><strong>&nbsp;</strong>In this blog entry we will examine using
+ a development environment based on command line tools which will 
+include using the VIM (VImproved) text editor, the GDBTUI debugger along
+ with the Texane’s stlink&nbsp; and OpenOCD&nbsp;GDBserver / programmer 
+utilities. It is assumed that the reader has completed <a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">Part 1 of the tutorial</a>.</p>
+<p>So why use these tools when you have sophisticated tools such as 
+Eclipse ? Command line tools run faster, are usually less buggy than 
+their GUI counterparts and require significantly less memory and 
+processing power. They also allow for a high degree of automation. They 
+can turn your old PC into a development power house!<span id="more-997"></span></p>
+<p><strong>Using A Command Line Based Code Editor</strong></p>
+<p><a href="http://www.vim.org/">Vim</a> (or VI improved) is a powerful 
+command line code/text editor that supports syntax highlighting, tabbed 
+windows, horizontal/vertical split windows, advanced copying &amp; 
+pasting functionality, advanced search (and incremental search) 
+functionality to name a few! Vim is a bit unconventional when compared 
+with other text editors. But those patient and brave enough to use it 
+will reap its benefits. A list of Vim tutorials is provided below:</p>
+<ul>
+<li><a href="http://www.derekwyatt.org/vim/vim-tutorial-videos/">Derek Wyatt’s VIM tutorial videos&nbsp; </a></li>
+<li><a href="http://www.openvim.com/tutorial.html">OpenVim interactive tutorial</a>&nbsp; (Really cool!!! highly recommended!!)</li>
+<li><a href="ftp://ftp.vim.org/pub/vim/doc/book/vimbook-OPL.pdf">The Vim book</a></li>
+<li><a href="http://newbiedoc.sourceforge.net/text_editing/vim.html">Beginner’s Guide To VI Improved (VIM)</a></li>
+</ul>
+<div id="attachment_976" style="width: 1930px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0107.png"><img class="size-full wp-image-976" alt="Figure 1. Using VIM as a code editor. " src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/stm32f0lin0107.png" height="1051" width="1920"></a><p class="wp-caption-text">Figure 1. Using VIM as a code editor.</p></div>
+<p>I recently started using Vim and I’m having a blast! I highly 
+recommend it to others. Other popular command line code / text editors 
+include the incredibly powerful <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a> and <a href="http://www.nano-editor.org/">GNU Nano.</a></p>
+<p><strong>Using GNU GDB in TUI mode (GDBTUI)</strong></p>
+<p>The arm toolchain discussed in this and the <a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">previous tutorial</a>
+ comes with a GDB client utility. With the GDBServer (stlink’s st-util 
+or OpenOCD) is connected to the microcontroller, the GDB client connects
+ to the GDBServer to access the on chip debug capabilities of the 
+microcontroller. GDB is primarily&nbsp; text based, but it also has a 
+mode called GDB Text User Interface (GDBTUI) which is a bit more 
+graphical as it shows you the execution path in your source code as well
+ as provides full GDB functionality. With GDB/GDBTUI one can view 
+disassembly code,&nbsp; set/toggle/disable/enable/delete breakpoints 
+&amp; watchpoints, perform step into and step over, run (continue), 
+halt, watch variables,&nbsp; set variables &amp; monitor CPU/memory 
+registers. You can even download the binary file from GDB/GDBTUI using 
+the load command.</p>
+<div id="attachment_978" style="width: 1592px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0109.png"><img class="size-full wp-image-978" alt="Figure 2. Using st-util GDBserver (left) and GDBtui (right) to debug project from command line" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/stm32f0lin0109.png" height="702" width="1582"></a><p class="wp-caption-text">Figure 2. Using st-util GDBserver (left) and GDBtui (right) to debug project from command line</p></div>
+<p>A list of good tutorials on GDB and GDBTUI are provided below:</p>
+<ul>
+<li><a href="http://beej.us/guide/bggdb/">Beej’s Quick guide to GDB</a></li>
+<li><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/Debugging%20with%20GDB">Debugging with GDB</a></li>
+<li><a href="http://davis.lbl.gov/Manuals/GDB/gdb_21.html">GDBTUI (GDB Text User Interface) Tutorial</a></li>
+</ul>
+<p><strong>Building Two Simple (template) Projects for the STM32F0 Microcontroller</strong></p>
+<p>In this section two simple projects for the STM32F0 microcontroller will be built using the toolchain installed in the<a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/"> previous tutorial</a>. The first project “<em>iotogglem0_wspl</em>” is compiled against the STM32F0 standard peripheral library, while the second “<em>iotogglem0</em>” is not. Both programs perform the same function of toggling the two LEDs on the STM32F0Discovery board.</p>
+<ul>
+<li>Create a “workspace” directory inside the “EmbeddedArm” directory (“<strong>mkdir ~/EmbeddedArm/workspace</strong>“) and navigate to it (“<strong>cd&nbsp;~/EmbeddedArm/workspace</strong>“).</li>
+<li class="size-full wp-image-981">Clone the following ready to go 
+project template based on the STM32F0Discovery standard peripheral 
+library&nbsp; with the following command: “<strong>git clone <a href="https://github.com/halherta/iotogglem0_wspl">git://github.com/halherta/iotogglem0_wspl.git</a></strong>“.</li>
+<li class="size-full wp-image-981">This project expects&nbsp; the firmware library folder&nbsp;”<em>STM32F0-Discovery_FW_V1.0.0</em>” to exist in&nbsp; the “<em>~/EmbeddedArm/STM32F0-Discovery_FW_V1.0.0</em>” directory and the project files must exist at&nbsp;”<em>~/EmbeddedArm/workspace/iotogglem0_wspl”</em>. So be mindful of the directory structures involved.</li>
+<li class="size-full wp-image-981">Navigate into the “<em>iotogglem0_wspl</em>” and type “<strong>make</strong>“.
+ This should build the project as shown in Figure 3a. The number under 
+the word “text” is the size of the binary. In our case this is 2568 
+bytes out of the 65535 available bytes of program memory or 3.9% memory 
+usage.</li>
+<li class="size-full wp-image-981">Type “<strong>make clean</strong>” to clean the build.</li>
+</ul>
+<div id="attachment_975" style="width: 654px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0106.png"><img class="size-full wp-image-975" alt="Figure 3a Project (with standard peripheral library)Built Successfully!" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/stm32f0lin0106.png" height="584" width="644"></a><p class="wp-caption-text">Figure 3a Project (with standard peripheral library)Built Successfully!</p></div>
+<ul>
+<li>Clone the following ready to go self-contained project template NOT 
+based on the STM32F0Discovery standard peripheral library&nbsp; with the
+ following command:”<strong>git clone <a href="https://github.com/halherta/iotogglem0">git://github.com/halherta/iotogglem0.git</a>“</strong>.</li>
+<li>Navigate into the “<em>iotogglem0</em>” and type “<strong>make</strong>“. This should build the project as shown in Figure 3b.<strong></strong>
+ The number under the word “text” is the size of the binary. In our case
+ this is 860 bytes out of the 65535 available bytes of program memory or
+ 1.3% memory usage.
+<ul>
+<li>Notice how not using the standard peripheral library can help us reduce our memory usage significantly!!!!</li>
+</ul>
+</li>
+<li>Type “<strong>make clean</strong><strong></strong>” to clean the build.</li>
+</ul>
+<div>
+<dl id="attachment_982">
+<dt>
+<div id="attachment_982" style="width: 654px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin01010v1.png"><img class="size-full wp-image-982" alt="Figure 3b. Project (without standard peripheral library) built successfully!" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/stm32f0lin01010v1.png" height="404" width="644"></a><p class="wp-caption-text">Figure 3b. Project (without standard peripheral library) built successfully!</p></div>
+</dt>
+</dl>
+</div>
+<p>I highly recommend to those interested in using the ARM GCC toolchain
+ regularly (with or without Eclipse) to invest some time in learning 
+about the GNU Make and GCC tools Some good tutorials include:</p>
+<ul>
+<li><a href="http://www.linuxforu.com/2012/06/gnu-make-in-detail-for-beginners/">GNU Make in Detail for Beginners</a></li>
+<li><a href="http://www.network-theory.co.uk/docs/gccintro/index.html">An introduction to GCC</a></li>
+<li><a href="http://www.gnu.org/software/make/manual/">GNU Make Manual</a></li>
+<li><a href="http://gcc.gnu.org/onlinedocs/">GCC Manual</a></li>
+</ul>
+<p><strong>Using Texane’s stlink utilities for Programming and Debugging From the Command Line</strong></p>
+<p>The Texane stlink utilities consists of two binaries; <strong>st-util</strong> is the GDB server, used for debugging and <strong>st-flash</strong> used for programming.</p>
+<p>To start a Debug session (See Figure 2),</p>
+<ul>
+<li>Connect the STM32F0Discovery board to the PC with a mini USB cable.</li>
+<li>Open a new terminal and type : “<strong>st-util</strong>“. This should start the GDBserver at port 4242.</li>
+<li>Open another new terminal window and navigate to the directory of the project that you want to debug; say “<em>iotogglem0_wspl</em>“.</li>
+<li>In the second terminal type: “<strong>arm-none-eabi-gdbtui -eval-command=”target remote localhost:4242″&nbsp;iotogglem0_wspl.elf </strong>“. This will start the debugging session using GDBTUI. At the GDB prompt&nbsp; type”<strong>load</strong>”
+ to program the binary onto the micro and initialize the debug session. 
+You can then use the GDB commands to debug your program.</li>
+</ul>
+<div id="attachment_977" style="width: 1104px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0108.png"><img class="size-full wp-image-977" alt="Figure 4. Programming the STM32F0Discovery Board from the command line using st-flash (texane's stlink)" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/stm32f0lin0108.png" height="697" width="1094"></a><p class="wp-caption-text">Figure 4. Programming the STM32F0Discovery Board from the command line using st-flash (texane’s stlink)</p></div>
+<p>To flash a binary file onto the microcontroller using the st-flash utility (see Figure 4):</p>
+<ul>
+<li>Open a new terminal window and navigate to the directory of the project that you want to program; say “<em>iotogglem0_wspl</em>“.</li>
+<li>Type the following command: “<strong>st-flash write iotogglem0_wspl.bin 0×8000000</strong>“. This command writes the contents of the binary file <em>iotoggle_wspl.bin </em>to the microcontroller’s program memory starting at address 0×8000000 (the first location of program/flash memory)<em><br>
+</em></li>
+<li>The st-flash utility can also be used to erase the program memory with the command “<strong>st-flash erase</strong>“. Unfortunately there’s a bug that prevents this command from working most of the time. Luckily when using the “<strong>st-flash write</strong>
+ …” command described above, Program / Flash Memory is completely erased
+ properly, then programmed and then verified. So the lack of a 
+functional erase command is not strictly a major problem.</li>
+<li>The makefiles that come with the two projects are able to automate 
+the programming and debugging processes described above. This ability to
+ automate&nbsp; via makefiles and in some cases bash scripts, is 
+probably one of the major advantages of using command line tools. In the
+ appropriate project directory, simply type:
+<ul>
+<li>“<strong>make flash_stlink</strong>” to program a binary file onto the micro.</li>
+<li>“<strong>make debug_stlink</strong>” to start a debugging session</li>
+<li>“<strong>make erase_stlink</strong>” to erase the micro’s program memory… As described above, this is currently not working.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Using OpenOCD for Programming and Debugging <strong>From the Command Line</strong><br>
+</strong></p>
+<p>OpenOCD is a GDB server utility that can be used for debugging and 
+programming, very much like stlink’s st-util and st-flash. OpenOCD 
+supports a wide range of programming/JTAG adapters(dongles) a wide range
+ of&nbsp; target CPUs and a wide range of development boards.</p>
+<p>To start an OpenOCD debug session:</p>
+<ul>
+<li>Connect the STM32F0Discovery board to the PC with a mini USB cable.</li>
+<li>Open a new terminal and type the following command: “<strong>openocd
+ -s ~/EmbeddedArm/openocd-bin/share/openocd/scripts/ -f 
+interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg -c “init” -c 
+“halt” -c “reset halt” &nbsp;</strong> “. The -s flag establish a search
+ directory for configuration files, The -f flag&nbsp; includes specific 
+configuration files from within that directory. In our case we are 
+including the stlink-v2.cfg configuration file for the STLINKV/2 
+interface and the stm32fox_stlink.cfg file for the STM32F0 target. 
+Finally the -c flag passes commands to the GDBserver so basically 
+whenever a connection is made to the GDBserver by a GDB/ GDBTUI client, 
+the chip will be put in reset first.</li>
+<li>Open another new terminal window and navigate to the directory of the project that you want to debug; say “<em>iotogglem0_wspl</em>“.</li>
+<li>In the second terminal type: “<strong>arm-none-eabi-gdbtui –eval-command=”target remote localhost:3333″ iotogglem0_wspl.elf</strong>“. This will start the debugging session using GDBTUI.&nbsp; You can then use GDB commands to debug your program.</li>
+</ul>
+<p>To flash a binary onto the microcontroller with openOCD:</p>
+<ul>
+<li>Open a new terminal window and navigate to the directory of the project that you want to program; say “<em>iotogglem0_wspl</em>“.</li>
+<li>Type the following command: incredibly long command: “<strong>openocd
+ -s ~/EmbeddedArm/openocd-bin/share/openocd/scripts/ -f 
+interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg -c “init” -c 
+“reset halt” -c “sleep 100″ -c “wait_halt 2″ -c “flash write_image erase
+ </strong><strong><strong>iotogglem0_wspl</strong>.bin 0×08000000″ -c “sleep 100″ -c “verify_image </strong><strong><strong><strong>iotogglem0_wspl</strong></strong>.bin 0×08000000″ -c “sleep 100″ -c “reset run” -c shutdown</strong>“.
+ Again the -c flag is used to pass a sequence of commands that reset the
+ target, erase its memory, flash it with the new binary, verify the 
+memory and then exit.</li>
+<li>Alternatively we could&nbsp; navigate to the directory of the project and type: “<strong>openocd -s ~/EmbeddedArm/openocd-bin/share/openocd/scripts/ -f interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg</strong>“</li>
+<li>Then open a new terminal window and telnet to localhost port 4444 (to install telnet, type: “<strong>sudo apt-get install telnet</strong>“.) with :”<strong>telnet localhost 4444</strong>“. This will enable you to telnet into the OpenOCD GDBserver and interact with it.</li>
+<li>In the telnet window (Figure 5) type the following commands to program the microcontroller: “<strong>reset halt</strong>“, “<strong>sleep 100</strong>“, “<strong>wait_halt 2</strong>“, “<strong>flash write_image erase iotogglem0_wspl.bin 0×08000000</strong>” &amp; “<strong>sleep 100</strong>″.</li>
+</ul>
+<div id="attachment_1006" style="width: 701px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/09/untitled.png"><img class="size-full wp-image-1006" alt="Figure 5. Telnetting into the openOCD GDBserver (port 4444) to flash/erase the microcntroller memory" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/untitled.png" height="405" width="691"></a><p class="wp-caption-text">Figure 5. Telnetting into the openOCD GDBserver (port 4444) to flash/erase the microcntroller memory</p></div>
+<ul>
+<li>To verify type: “<strong>verify_image iotogglem0_wspl.bin 0×08000000</strong>”&nbsp; and “<strong>sleep 100</strong>”.</li>
+<li>To have the debugger put the micro in run mode type: “<strong>reset run</strong>”</li>
+<li>If OpenOCD hangs, try either pressing the “RESET” button on the 
+STM32F0Discovery board and/or remove the JP2 jumper and put it back on 
+again to cycle power to the board.</li>
+<li>You could probably omit the “wait_halt 2″ command mentioned for programming.</li>
+<li>Also verifying flash might not be necessary for most cases. If you 
+look at Figure 5 you will see that the number of bytes written in the 
+program step is larger than the the number of bytes verified. This maybe
+ due to the debug information being embedded in the .bin file that does 
+not need to be verified. But I’m really not sure. Either way the new 
+program should run on the chip with no problems.</li>
+<li>I got the above commands from a <a href="https://github.com/szczys/stm32f0-discovery-basic-template/blob/master/extra/stm32f0-openocd.cfg">script</a> posted on Github by Mike Szczys.</li>
+<li>Notice that the commands typed into the telnet window are exactly 
+the same commands typed above are into the command line with the -c 
+flags.</li>
+<li>Finally note how we didn’t have to specify the directory that the 
+.bin file to be programmed was in. This is because we started the GDB 
+server in the project directory. When using OpenOCD&nbsp; to program, it
+ is very important to START THE OPENOCD SERVER IN THE PROJECT 
+DIRECTORY!!!!</li>
+<li>Mike Szczys’s <a href="https://github.com/szczys/stm32f0-discovery-basic-template">stm32f0-discovery-basic-template</a>
+ enables programming and erasing the microcontroller with openOCD using 
+two modules in a script that are callable from the command 
+line/makefile. This is another very elegant solutionTo flash a binary 
+onto the microcontroller with openOCD:</li>
+</ul>
+<p>To erase the microcontrollers program memory with openOCD:</p>
+<ul>
+<li>Open a new terminal</li>
+<li>Type: ” <strong>openocd -s 
+~/EmbeddedArm/openocd-bin/share/openocd/scripts/ -f 
+interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg 
+-&nbsp;&nbsp;&nbsp; c “init” -c “reset halt” -c “sleep 100″ -c “stm32f1x
+ mass_erase 0″ -c “sleep 100″ -c shutdown </strong>“.</li>
+<li>Again you can telnet into the openOCD GDB server (port 4444) and 
+type in commands shown above ( “reset halt”, “sleep 100″, “stm32f1x 
+mass_erase 0″ &amp; “sleep 100″ ) to erase the chips memory.</li>
+</ul>
+<p>The makefiles that come with the two projects are able to automate 
+the programming and debugging processes described above. In the 
+appropriate project directory, simply type:</p>
+<ul>
+<li>“<strong>make flash_openocd</strong>” to program a binary file onto the micro.</li>
+<li>“<strong>make debug_openocd</strong>” to start a debugging session</li>
+<li>“<strong>make erase_openocd</strong>” to erase the micro’s program memory.</li>
+</ul>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow" class="share-email sd-button share-icon" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?share=email" target="_blank" title="Click to email this to a friend"><span>Email</span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?share=twitter" target="_blank" title="Click to share on Twitter" id="sharing-twitter-997"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?share=facebook" target="_blank" title="Share on Facebook" id="sharing-facebook-997"><span>Facebook</span></a></li><li class="share-linkedin"><a rel="nofollow" class="share-linkedin sd-button share-icon" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?share=linkedin" target="_blank" title="Click to share on LinkedIn" id="sharing-linkedin-997"><span>LinkedIn</span></a></li><li class="share-end"></li></ul></div></div></div>											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://hertaville.com/category/stm32f0discovery/" title="View all posts in Free STM32F0 Development Environment" rel="category tag">Free STM32F0 Development Environment</a>. Bookmark the <a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/" title="Permalink to STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/" rel="prev"><span class="meta-nav">←</span> STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</a></div>
+					<div class="nav-next"><a href="http://hertaville.com/2013/09/06/soldered-a-32lqfp-stm32f0-microcontroller/" rel="next">Hand Soldered a 32LQFP STM32F0 Microcontroller! <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">4 Responses to <em>STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-5345">
+		<div id="comment-5345">
+			<div class="comment-author vcard">
+								<cite class="fn"><a href="http://aac-tr.com/" rel="external nofollow" class="url">ozgur bas</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/#comment-5345">
+				September 29, 2013 at 6:23 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Hi,<br>
+your arm gnu eclipse manual on windows was very helpful.<br>
+Why did you remove windows version setup manual?<br>
+Do you plan to prepare an other part for linux which shows eclipse setups?<br>
+thank you.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?replytocom=5345#respond" onclick='return addComment.moveForm("comment-5345", "5345", "respond", "997")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-halherta bypostauthor odd alt depth-2" id="li-comment-5350">
+		<div id="comment-5350">
+			<div class="comment-author vcard">
+								<cite class="fn">halherta</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/#comment-5350">
+				September 29, 2013 at 10:47 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Ozgur, the windows version of the tutorial is still up..look <a href="http://hertaville.com/2012/05/28/gcc-arm-toolchain-stm32f0discovery/" rel="nofollow">here</a>.
+ For the newer linux based tutorials I will not be showing eclipse 
+setups….. as it’s very similar to the eclipse setup in windows. I’m 
+planning to dedicate whatever free time i have to write new tutorials 
+for the STM32F0 peripherals instead.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?replytocom=5350#respond" onclick='return addComment.moveForm("comment-5350", "5350", "respond", "997")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-5704">
+		<div id="comment-5704">
+			<div class="comment-author vcard">
+								<cite class="fn">Rick Kimball</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/#comment-5704">
+				October 23, 2013 at 11:06 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Thanks, I enjoy your articles on these 
+great chips.  One question, why the return to the stm32 chips? I thought
+ you had written them off with the intent of focusing on the PIC32 ones?</p>
+<p>BTW: please keep these up, I much prefer articles on ARM chips.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?replytocom=5704#respond" onclick='return addComment.moveForm("comment-5704", "5704", "respond", "997")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-halherta bypostauthor odd alt depth-2" id="li-comment-5706">
+		<div id="comment-5706">
+			<div class="comment-author vcard">
+				<img alt="" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/140bee725410929bfe5f3db3cf30f795.png" class="avatar avatar-40 photo" height="40" width="40">				<cite class="fn">halherta</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/#comment-5706">
+				October 23, 2013 at 12:40 pm</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Yeah I’m sort of flip flopping between 
+the two. I think I’ve decided to stick with the STM32F0′s now that they 
+come in packages that I can solder.<br>
+The PIC32s are still great though as are the dsPICs and PIC24s.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/?replytocom=5706#respond" onclick='return addComment.moveForm("comment-5706", "5706", "respond", "997")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ol>
+
+
+	
+
+								<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://hertaville.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" size="30" type="text"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
+ href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; 
+&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del 
+datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; 
+&lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" id="submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="997" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="2641593352" type="hidden"></p><p class="comment-subscription-form"><input name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments" style="display: inline;">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts by email.</label></p>					</form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://hertaville.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input name="s" id="s" type="text">
+					<input id="searchsubmit" value="Search" type="submit">
+				</div>
+			</form></li>		<li id="recent-posts-2" class="widget-container widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://hertaville.com/2013/09/28/io-expansion-board-rpi/">I/O Expansion Board Rev0 for the Raspberry Pi</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/09/06/soldered-a-32lqfp-stm32f0-microcontroller/">Hand Soldered a 32LQFP STM32F0 Microcontroller!</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/">Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)</a>
+						</li>
+				</ul>
+		</li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href="http://hertaville.com/2013/09/">September 2013</a></li>
+	<li><a href="http://hertaville.com/2013/07/">July 2013</a></li>
+	<li><a href="http://hertaville.com/2013/04/">April 2013</a></li>
+	<li><a href="http://hertaville.com/2013/01/">January 2013</a></li>
+	<li><a href="http://hertaville.com/2012/12/">December 2012</a></li>
+	<li><a href="http://hertaville.com/2012/11/">November 2012</a></li>
+	<li><a href="http://hertaville.com/2012/09/">September 2012</a></li>
+	<li><a href="http://hertaville.com/2012/08/">August 2012</a></li>
+	<li><a href="http://hertaville.com/2012/07/">July 2012</a></li>
+	<li><a href="http://hertaville.com/2012/06/">June 2012</a></li>
+	<li><a href="http://hertaville.com/2012/05/">May 2012</a></li>
+		</ul>
+</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://hertaville.com/category/stm32f0discovery/" title="All things related to the Free STM32F0 Development Environment">Free STM32F0 Development Environment</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://hertaville.com/category/raspberry-pi/" title="View all posts filed under Raspberry Pi">Raspberry Pi</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://hertaville.com/category/raspberry-pi-cross-development/" title="View all posts filed under Raspberry Pi Cross Development">Raspberry Pi Cross Development</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://hertaville.com/category/raspberry-pi-peripherals/" title="View all posts filed under Raspberry Pi Peripherals">Raspberry Pi Peripherals</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://hertaville.com/category/peripherals/" title="View all posts filed under STM32F0 Peripherals">STM32F0 Peripherals</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://hertaville.com/category/the-gcc-build-process/" title="View all posts filed under The GCC Build Process">The GCC Build Process</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://hertaville.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+		</ul>
+</li><li id="recent-comments-2" class="widget-container widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments">Kaushalyas on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-6207">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">Kaushalyas on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-6206">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">halherta on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-5918">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">sakib on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-5917">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">Jay on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-5893">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li></ul></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+
+		<div id="secondary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<li id="iclw-2" class="widget-container widget_iclw"><h3 class="widget-title">Links</h3><ul><li><a target="_blank" href="http://www.eeweb.com/">EEWeb.com</a></li><li><a href="http://www.adafruit.com/">Adafruit</a></li><li><a href="http://www.sparkfun.com/">Sparkfun</a></li><li><a href="http://www.raspberrypi.org/">Raspberry Pi Foundation</a></li><li><a href="http://www.hackaday.com/">Hackaday</a></li></ul></li>			</ul>
+		</div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://hertaville.com/" title="Hertaville" rel="home">
+					Hertaville				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-499284bf923f27dcf4e4b6b1184d0810">
+	</div>
+	<div class="grofile-hash-map-140bee725410929bfe5f3db3cf30f795">
+	</div>
+	<div class="grofile-hash-map-af0823f9b3419525e8386025460dace4">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/hertaville.com\/2013\/09\/03\/stm32f0discovery-command-line-ide\/":997}	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="/2013/09/03/stm32f0discovery-command-line-ide/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="text">
+
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="text">
+
+			
+			
+			<img style="float: right; display: none" class="loading" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/loading.gif" alt="loading" height="16" width="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-linkedin' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/devicepx-jetpack.js"></script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/wpgroho.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var recaptcha_options = {"lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Part%202%20%E2%80%93%20Using%20a%20Minimalist%20Integrated%20Development%20Environment%20From%20the%20Command%20Line%20%7C%20Hertaville_files/sharing.js"></script>
+
+	
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.6',blog:'37714408',post:'997',tz:'-5'});
+	var load_cmc = function(){linktracker_init(37714408,997,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>
+
+</body></html>

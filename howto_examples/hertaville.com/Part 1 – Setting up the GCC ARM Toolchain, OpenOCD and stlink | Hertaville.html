@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink | Hertaville</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/style.css">
+<link rel="pingback" href="http://hertaville.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="Hertaville » Feed" href="http://hertaville.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hertaville » Comments Feed" href="http://hertaville.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hertaville » STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink Comments Feed" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/feed/">
+<link rel="stylesheet" id="jetpack-widgets-css" href="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/widgets.css" type="text/css" media="all">
+<link rel="stylesheet" id="sharedaddy-css" href="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/sharing.css" type="text/css" media="all">
+<link rel="stylesheet" id="core3.0-css" href="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/shCore.css" type="text/css" media="all">
+<link rel="stylesheet" id="core-Default3.0-css" href="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/shCoreDefault.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-Default3.0-css" href="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/shThemeDefault.css" type="text/css" media="all">
+<script type="text/javascript" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/comment-reply.js"></script>
+<script type="text/javascript" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/jquery.js"></script>
+<script type="text/javascript" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/jquery-migrate.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://hertaville.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://hertaville.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)" href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/">
+<link rel="next" title="STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line" href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">
+<meta name="generator" content="WordPress 3.7.1">
+<link rel="canonical" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">
+<link rel="shortlink" href="http://wp.me/p2yfeU-fi">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink">
+<meta property="og:url" content="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">
+<meta property="og:description" content="This is the first part of a 2-part tutorial on setting up&nbsp; and using a free and fully functional development environment with the STM32F0Discovery board on a Linux PC . The official ARM (GNU Tools ...">
+<meta property="og:site_name" content="Hertaville">
+<meta property="og:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0101.png">
+<meta property="og:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0102.png">
+<meta property="og:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0103.png">
+<meta property="og:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0104.png">
+<meta property="og:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0105.png">
+<meta name="twitter:site" content="@jetpack">
+<meta name="twitter:image" content="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0101.png?w=240">
+<meta name="twitter:card" content="summary">
+<style>#ahyldysklkvzodgldpgjlchewgttvvsewgxji{border:solid 2px #fff !important;color:#fff !important;display:block !important;height:auto !important;margin:0 !important;opacity:0.9 !important;padding:7px 10px !important;position:fixed !important;visibility:visible !important;width:auto !important;z-index:2147483647 !important;-moz-border-radius:5px !important;border-radius:5px !important;-moz-box-shadow:0px 0px 20px #000 !important;box-shadow:0px 0px 20px #000 !important;}.ahyldysklkvzodgldpgjlchewgttvvsewgxji-blocked{color:#777 !important;display:inline !important;text-decoration:line-through !important;}#ahyldysklkvzodgldpgjlchewgttvvsewgxji br{display:block !important;}#ahyldysklkvzodgldpgjlchewgttvvsewgxji span{background:transparent !important;}#ahyldysklkvzodgldpgjlchewgttvvsewgxji div{border:0 !important;margin:0 !important;padding:0 !important;width:auto !important;letter-spacing:normal !important;font:13px Arial,Helvetica !important;text-align:left !important;text-shadow:none !important;text-transform:none !important;word-spacing:normal !important;}#ahyldysklkvzodgldpgjlchewgttvvsewgxji a{font-weight:normal !important;background:none !important;text-decoration:underline !important;color:#fff !important;}@media print{#ahyldysklkvzodgldpgjlchewgttvvsewgxji{display:none !important;}}</style></head>
+
+<body class="single single-post postid-948 single-format-standard">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://hertaville.com/" title="Hertaville" rel="home">Hertaville</a>
+					</span>
+				</div>
+				<div id="site-description">Welcome to Hertaville!</div>
+
+										<img src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/cropped-banner-electronics.jpg" alt="" height="198" width="940">
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-main-menu" class="menu"><li id="menu-item-689" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-689"><a href="http://www.hertaville.com/">Home</a></li>
+<li id="menu-item-731" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-731"><a href="http://hertaville.com/the-stm32f0discovery-board/">The STM32F0Discovery Board</a>
+<ul class="sub-menu">
+	<li id="menu-item-682" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-ancestor current-menu-parent current-custom-parent menu-item-has-children menu-item-682"><a href="http://hertaville.com/category/stm32f0discovery/">Free STM32F0 Development Environment</a>
+	<ul class="sub-menu">
+		<li id="menu-item-994" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-994"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</a></li>
+		<li id="menu-item-1012" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1012"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line</a></li>
+		<li id="menu-item-683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-683"><a href="http://hertaville.com/2012/05/28/gcc-arm-toolchain-stm32f0discovery/">(MS Winows 7) – Legacy – Part 1 – Setting up the GCC ARM Toolchain</a></li>
+		<li id="menu-item-684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-684"><a href="http://hertaville.com/2012/06/25/using-the-eclipse-ide-gcc-arm/">(MS Winows 7) – Legacy – Part 2 – Setting up the Eclipse IDE</a></li>
+		<li id="menu-item-694" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-694"><a href="http://hertaville.com/2012/09/16/part-3-debugging-openocd-0-6-0/">(MS Winows 7) – Legacy – Part 3 – Setting up Debugging with the Eclipse IDE (OpenOCD 0.6.0)</a></li>
+	</ul>
+</li>
+	<li id="menu-item-681" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-681"><a href="http://hertaville.com/category/the-gcc-build-process/">The GCC Build Process</a>
+	<ul class="sub-menu">
+		<li id="menu-item-685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-685"><a href="http://hertaville.com/2012/06/28/an-overview-of-the-build-process/">An Overview of the Build Process</a></li>
+		<li id="menu-item-686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-686"><a href="http://hertaville.com/2012/06/29/a-sample-linker-script/">A Sample Linker Script</a></li>
+		<li id="menu-item-687" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-687"><a href="http://hertaville.com/2012/06/29/the-startup-file/">The Startup file</a></li>
+		<li id="menu-item-688" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-688"><a href="http://hertaville.com/2012/06/29/the-iotogglem0-project-folder-structure-and-the-makefile/">The iotogglem0 Project Folder Structure and the makefile</a></li>
+	</ul>
+</li>
+	<li id="menu-item-691" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-691"><a href="http://hertaville.com/category/peripherals/">STM32F0 Peripherals</a>
+	<ul class="sub-menu">
+		<li id="menu-item-692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-692"><a href="http://hertaville.com/2012/07/28/stm32f0-gpio-tutorial-part-1/">Understanding the STM32F0′s GPIO part 1</a></li>
+		<li id="menu-item-693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-693"><a href="http://hertaville.com/2012/09/01/understanding-the-stm32f0%E2%80%B2s-gpio-part-2/">Understanding the STM32F0′s GPIO part 2</a></li>
+		<li id="menu-item-706" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-706"><a href="http://hertaville.com/2012/09/29/external-interrupts-on-the-stm32f0/">External Interrupts on the STM32F0</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-702"><a href="http://hertaville.com/raspberry-pi/">The Raspberry Pi Board</a>
+<ul class="sub-menu">
+	<li id="menu-item-704" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-704"><a href="http://hertaville.com/2012/09/27/raspbian-raspberry-pi/">Installing Raspbian on the Raspberry Pi</a></li>
+	<li id="menu-item-868" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-868"><a href="http://hertaville.com/category/raspberry-pi-cross-development/">Raspberry Pi Cross Development</a>
+	<ul class="sub-menu">
+		<li id="menu-item-705" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-705"><a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain</a></li>
+		<li id="menu-item-708" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-708"><a href="http://hertaville.com/2013/01/11/remote-debugging/">Remote Debugging of Raspberry Pi Applications from Eclipse</a></li>
+		<li id="menu-item-849" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-849"><a href="http://hertaville.com/2013/07/19/cross-compiling-gtk-applications-for-the-raspberry-pi/">Cross Compiling GTK applications For the Raspberry Pi</a></li>
+	</ul>
+</li>
+	<li id="menu-item-869" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-869"><a href="http://hertaville.com/category/raspberry-pi-peripherals/">Raspberry Pi Peripherals</a>
+	<ul class="sub-menu">
+		<li id="menu-item-707" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-707"><a href="http://hertaville.com/2012/11/18/introduction-to-accessing-the-raspberry-pis-gpio-in-c/">Introduction to accessing the Raspberry Pi’s GPIO in C++ (Linux Way!)</a></li>
+		<li id="menu-item-710" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-710"><a href="http://hertaville.com/2013/04/01/interfacing-an-i2c-gpio-expander-mcp23017-to-the-raspberry-pi-using-c/">Interfacing an I2C GPIO expander (MCP23017) to the Raspberry Pi using C++</a></li>
+		<li id="menu-item-899" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-899"><a href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/">Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-766" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-766"><a href="http://hertaville.com/about/">About</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/" rel="prev"><span class="meta-nav">←</span> Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)</a></div>
+					<div class="nav-next"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/" rel="next">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-948" class="post-948 post type-post status-publish format-standard hentry category-stm32f0discovery">
+					<h1 class="entry-title">STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/" title="5:30 pm" rel="bookmark"><span class="entry-date">September 2, 2013</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://hertaville.com/author/halherta/" title="View all posts by halherta">halherta</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>This is the first part of a 2-part tutorial on setting up&nbsp;
+ and using a free and fully functional development environment with the 
+STM32F0Discovery board on a Linux PC . The official ARM (<a href="https://launchpad.net/gcc-arm-embedded">GNU Tools for ARM Embedded Processors</a>)
+ GCC toolchain and the openOCD and Texane’s stlink debugger / programmer
+ utilities will be used within a command line based environment.&nbsp; 
+Two example projects will be utilized; one that’s based on the STM32F0′s
+ standard peripheral library and one that isn’t.</p>
+<p><strong>Why the ARM Cortex-M0 &amp; why the STM32F0 Family Specifically?</strong></p>
+<p>The ARM Cortex-M0 is a 32-bit core that strikes an excellent balance 
+between performance,&nbsp; power usage and price. It may not be as 
+sophisticated and powerful as its older siblings the ARM Cortex-M3 &amp;
+ M4, but its simplicity, ease of use, lower cost and reduced power 
+consumption easily makes up for that.&nbsp;The ARM Cortex-M0 core was 
+designed to compete with other 8-bit/16-bit microcontroller cores and it
+ succeeds in this goal on all major fronts; performance,low power, price
+ and time to market.</p>
+<p><span id="more-948"></span></p>
+<p>The STM32F0 Microcontroller family has a very generous dose of 
+hardware peripherals generous memory options and now more packaging 
+options that include 20-SSOP(0.65mm) and 32-LQFP (0.8mm), both of which 
+are easier to hand solder than the classic 0.5mm QFP and QFN packages 
+that are the norm for 32-bit microcontrollers. The STM32F0 
+Microcontroller family also has what has got to be the lowest cost 
+development board with Debugger; the STM32F0 Discovery board. This board
+ costs $8-$10, includes headers that are breadboard-able as well as a 
+ST-LINK V2 debugger that can be used with other SMT32Fx based boards as 
+well in addition to the target STM32F0 microcontroller. In addition it 
+also has two switches and two LEDs.</p>
+<p>The major disadvantage of this board is that there’s no cost free, <strong>cross platform</strong>,
+ ready to go integrated development environment(IDE) solution for it. I 
+originally wrote a series of tutorials for setting up a custom IDE for 
+this board under MS Windows. There’s also the <a href="http://www.coocox.org/">Coocox IDE</a> which now supports the STM32F0 parts. Its free &amp; easy to use, but unfortunately is only available on MS Windows.</p>
+<p><strong>Downloading &amp; Installing the Toolchain &amp; Firmware Package</strong></p>
+<p>Here are the things that you will need to download:</p>
+<ul>
+<li>The<a href="https://launchpad.net/gcc-arm-embedded"> GCC arm toolchain</a></li>
+<li>The<a href="http://www.st.com/web/catalog/tools/FM147/CL1794/SC961/SS1743/PF257885"> STM32F0Discovery Firmware package</a></li>
+<li>The <a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/data_brief/DM00050631.pdf">STM32F0Discovery Board User Manual</a></li>
+<li>The<a href="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00039193.pdf"> STM32F051C8 Datasheet</a></li>
+<li>The <a href="http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031936.pdf">STM32F0 Reference Manual</a></li>
+<li>The<a href="http://www.st.com/web/en/resource/technical/document/programming_manual/DM00051352.pdf"> STM32F0 Cortex-M0 Programming Manual</a></li>
+</ul>
+<p>The toolchain linked above (<a href="https://launchpad.net/gcc-arm-embedded">GNU Tools for ARM Embedded Processors</a>)
+ is actively developed by ARM engineers and is used in many Commercial 
+IDEs. It is free, complete, has no limitations and is regularly updated.
+ Be sure to download the Linux version from the <a href="https://launchpad.net/gcc-arm-embedded">Toolchain Website</a>.</p>
+<p>We will also download the STM32FoDiscovery Firmware Package. This 
+package not only contains the standard peripheral libraries but also 
+other important files such as linker files, startup files and the system
+ files that are necessary to get the STM32F0 Microcontroller running.</p>
+<p>Finally it is imperative that we download and view all datasheets and
+ reference manuals related to the STM32F0 Microcontroller. Documentation
+ is your friend.</p>
+<ul>
+<li>If a 64-bit Linux OS is being used, install 32-bit libraries. In Ubuntu based Distros, type:
+<pre>sudo apt-get install ia32-libs</pre>
+<p>In Debian based distros first enable the 32-bit package repos:</p>
+<pre>dpkg --add-architecture i386</pre>
+<p>and then update:</p>
+<pre>apt-get update</pre>
+<p>Both commands must be run as root. Feel free to use “sudo” if it is 
+already installed on your machine. Once the 32-bit repos are added, run:</p>
+<pre>apt-get install ia32-libs</pre>
+<p>as root.</p></li>
+<li>The First step is to create a directory in your home folder. I’ll call it “EmbeddedArm”. From the terminal type:
+<pre>mkdir ~/EmbeddedArm</pre>
+</li>
+<li>Download the compressed Toolchain and extract it into the 
+“EmbeddedArm” directory. Make sure you download the Linux version of the
+ toolchain (it should end with the .tar.bz2 extension). Extraction can 
+be achieved easily with the GUI based archive manager available on your 
+distro. From the command line, navigate to the directory containing the 
+compressed toolchain and extract it with the following command :
+<pre>tar -xvjf gcc-arm-none-eabi-X_X-xxxxxx-xxxxxxxx-linux.tar.bz2 -C ~/EmbeddedArm/</pre>
+<p>The uppercase X ‘s should denote the version of the 
+Compiler/toolchain while the lowercase x’s should denote the release 
+date. Since the toolchain is regularly updated, expect the version and 
+release date of the toolchain to change regularly.</p></li>
+<li>The next step will be to add the toolchain’s “bin” directory to the 
+“PATH” environment variable. This will allow us to access the toolchain 
+through the terminal from any directory on our Linux PC. To do this we 
+will open the “.bashrc” file located in our home folder using the nano 
+editor:
+<pre>nano ~/.bashrc</pre>
+<p>and adding the following at the end of the .bashrc file:</p>
+<pre>export PATH=$PATH:$HOME/EmbeddedArm/gcc-arm-none-eabi-4_7-2013q2/bin</pre>
+<p>When&nbsp; done, exit the nano editor with Ctrl-X and when prompted 
+to save the file choose yes. Once back on the command line type:</p>
+<pre>source ~/.bashrc</pre>
+<p>This should cause the change to be reflected immediately in the 
+current terminal window. Alternatively we could close the terminal and 
+re-open a new one.</p></li>
+<li>At this point the toolchain should be installed and accessible for 
+any directory via the command line / terminal. To test the toolchain 
+type:</li>
+</ul>
+<pre>arm-none-eabi-gcc -v</pre>
+<p style="padding-left: 30px;">The version information of the toolchain should be printed out (Figure 1) indicating that the installation was successful.</p>
+<p><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0101.png"><img class="size-full wp-image-959" alt="Figure 1. ARM Toolchain successfully installed" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/stm32f0lin0101.png" height="566" width="851"></a></p>
+<ul>
+<li>Now extract the STM32FoDiscovery Firmware Package&nbsp;(.zip file) 
+and extract it into the “EmbeddedArm”&nbsp; directory&nbsp; with either 
+the GUI archive manager or with the zip command from the command line. 
+To install the zip utility type:
+<pre>sudo apt-get install zip unzip</pre>
+<p>Once installed, type:</p>
+<pre>unzip stm32f0discovery_fw.zip -d ~/EmbeddedArm/</pre>
+</li>
+</ul>
+<p><strong>Downloading and Installing Texane’s Stlink Utilities<br>
+</strong></p>
+<p>Things that you will need to download:</p>
+<ul>
+<li><a href="https://github.com/texane/stlink">Texane’s stlink Utility (github)</a></li>
+</ul>
+<ul>
+<li>First install the tools dependencies:
+<pre>sudo apt-get install git libusb-1.0.0-dev pkg-config autotools-dev</pre>
+</li>
+<li>Navigate into the “EmbeddedArm” directory:
+<pre>cd ~/EmbeddedArm</pre>
+<p>and clone the Texane’s stlink directory with this command:</p>
+<pre>git clone git://github.com/texane/stlink.git</pre>
+</li>
+<li>Type the following commands:
+<ul>
+<li>
+<pre>cd stlink</pre>
+<p><strong>&nbsp;</strong>to navigate into the stlink directory and then:</p></li>
+<li>
+<pre>/autogen.sh</pre>
+</li>
+<li>
+<pre>./configure</pre>
+</li>
+</ul>
+<ul>
+<li>
+<pre>make</pre>
+</li>
+</ul>
+<p>The three commands above build the <em>st-util</em> and <em>st-flash</em>
+ binaries in the stlink directory! the st-util binary is a GDBserver 
+that communicates with the STLink V/2 hardware on the STM32F0Discovery 
+board, and is used for debugging. The st-flash binary can be used to 
+program the target STM32F0 on the dev board via the STLINK V/2 hardware.</p></li>
+<li>At this point copy the file “49-stlinkv2.rules” from its location in the stlink directory, to the “/etc/udev/rules.d/<strong>” </strong>directory :
+<pre>sudo cp ~/EmbeddedArm/stlink/49-stlinkv2.rules /etc/udev/rules.d/</pre>
+</li>
+<li>This gives user access to the STLINK V/2 hardware (on the STM32F0 
+Discovery board) through the Linux OS. To immediately load the .rules 
+file without a reboot, typeL
+<pre>sudo udevadm control --reload-rules</pre>
+</li>
+<li>Finally add the stlink directory to the PATH variable in the 
+~/.bashrc file. This will allow us to use the st-util and st-flash 
+binaries from anywhere on on our PC via the terminal. Using the nano 
+editor, open the .bashrc file:
+<pre>nano ~/.bashrc</pre>
+<p>and then type the following at the end of the file:</p>
+<pre>export PATH=$PATH:$HOME/EmbeddedArm/stlink/</pre>
+<p>Then exit the nano editor and save all changes. Once you are back in the terminal window, type:</p>
+<pre>source ~/.bashrc</pre>
+<p>to immediately reload the new PATH variable.</p></li>
+<li>To test the st-util GDBserver connect the STM32F0Discovery board to your PC and&nbsp; type at the command line:
+<pre>st-util</pre>
+<p>You should see output identical to that in Figure 2.</p></li>
+</ul>
+<div id="attachment_960" style="width: 771px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0102.png"><img class="size-full wp-image-960" alt="Figure 2. st-util successfully installed" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/stm32f0lin0102.png" height="458" width="761"></a><p class="wp-caption-text">Figure 2. st-util successfully installed</p></div>
+<ul>
+<li>To test the st-flash programming utility simply type at the command line:</li>
+</ul>
+<pre>st-flash read out.bin 0x8000000 4096</pre>
+<ul>
+<li>This command reads the contents of the flash / program memory (first
+ 4096 bytes) starting at address 0×8000000 (beginning of flash / program
+ memory) and saves it into out.bin. You should see output identical to 
+that in Figure 3.</li>
+</ul>
+<div id="attachment_961" style="width: 771px" class="wp-caption alignleft"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0103.png"><img class="size-full wp-image-961" alt="Figure 3. st-flash successfully installed" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/stm32f0lin0103.png" height="458" width="761"></a><p class="wp-caption-text">Figure 3. st-flash successfully installed</p></div>
+<ul>
+<li>I highly recommend that you read the documentation that comes with 
+the stlink utility. It comes in the form of a pdf file that’s located 
+at: “~/EmbeddedArm/stlink/doc/tutorial/tutorial.pdf”</li>
+</ul>
+<p><strong>Downloading and Installing OpenOCD</strong></p>
+<p>Things that you will need to download:</p>
+<ul>
+<li>The latest <a href="http://sourceforge.net/projects/openocd/files/openocd/">openOCD release</a></li>
+</ul>
+<p>In this section of the tutorial,&nbsp; <a href="http://openocd.sourceforge.net/">OpenOCD</a>
+ will be downloaded, extracted, built and installed.&nbsp; OpenOCD is a 
+gdbserver application with built-in support for the debugger included in
+ the STM32FoDiscovery; the ST-LINK V/2…..OpenOCD like Texane’s stlink, 
+can be used to download code to the STM32F0Discovery as well as to 
+perform hardware debugging. OpenOCD is distributed as source, so we will
+ have to download it, extract it, build it and install it.</p>
+<ul>
+<li>To start,&nbsp; download the latest <a href="http://sourceforge.net/projects/openocd/files/openocd/">openOCD release</a>.
+ Once downloaded extract the openOCD compressed source file (.tar.bz2) 
+to the EmbeddedArm folder using a GUI archive manager or from the 
+command line with the following command:
+<pre>tar -xvjf openocd-x.x.x.tar.bz2 -C ~/EmbeddedArm/</pre>
+<p>Again the lowercase x’s denote the version number of OpenOCD. Before 
+building OpenOCD we need to install some dependencies as instructed on <a href="http://engineering-diy.blogspot.ca/2012/11/stm32f3-discovery-eclipse-openocd.html">this site</a>. The following command should install all dependencies:</p>
+<pre>sudo apt-get install git zlib1g-dev libtool flex bison libgmp3-dev libmpfr-dev libncurses5-dev libmpc-dev autoconf texinfo build-essential libftdi-dev libusb-1.0.0-dev</pre>
+<p>.</p></li>
+<li>Navigate into the OpenOCD source folder:
+<pre>cd ~/EmbeddedArm/openocd-x.x.x</pre>
+<p>and type the following commands in order:</p>
+<ul>
+<li>
+<pre>./configure --enable-maintainer-mode --enable-stlink  --prefix=$HOME/EmbeddedArm/openocd-bin</pre>
+</li>
+<li>
+<pre>make</pre>
+</li>
+<li>
+<pre>make install</pre>
+</li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 30px;">&nbsp;&nbsp;&nbsp; The first command 
+configures the openOCD build to include support for the ST-LINK V/2 
+debugger/programmer and specifies the directory 
+“$HOME/EmbeddedArm/openocd-bin” that will contain the openOCD binaries. 
+The second command builds openOCD and the third command installs it by 
+putting all binary files in the directory specified by the first 
+command. If this directory is located outside of the home folder tree, 
+it must have root privileges i.e.</p>
+<pre>sudo make install</pre>
+<ul>
+<li>If you have already installed Texane’s stlink as instructed in the 
+previous section, make sure that the “49-stlinkv2.rules” is in the 
+“/etc/udev/rules.d” directory as instructed above. If you have NOT 
+installed the stlink utility. or for some reason refuse to do so, create
+ the following file with nano:
+<pre>sudo nano  /etc/udev/rules.d/stlinkv2.rules</pre>
+</li>
+<li>Now add the following text to it:
+<pre>ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE="0666"</pre>
+<p>Exit nano and save the file. This file is required to give the non 
+root user access to the ST-LINK V/2 hardware on the STM32F0Discovery. 
+Now reload the udev rules:</p>
+<pre>sudo udevadm control --reload-rules</pre>
+</li>
+<li>Finally open .bashrc file in the home directory again with nano and add at the bottom of the file:
+<pre>export PATH=$PATH:$HOME/EmbeddedArm/openocd-bin/bin</pre>
+<p>Close the file and save changes. then type:</p>
+<pre>source ~/.bashrc</pre>
+<p>in the terminal window to reload the new updated PATH variable. This 
+will allow us to access the openOCD binary from any directory on our 
+computer via the terminal.</p></li>
+</ul>
+<div id="attachment_962" style="width: 654px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0104.png"><img class="size-full wp-image-962" alt="Figure 4. OpenOCD successfully installed" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/stm32f0lin0104.png" height="404" width="644"></a><p class="wp-caption-text">Figure 4. OpenOCD successfully installed</p></div>
+<ul>
+<li>Connect the STM32Discovery to your computer and run the following command:
+<pre>openocd -s ~/EmbeddedArm/openocd-bin/share/openocd/scripts/ -f board/stm32f0discovery.cfg</pre>
+<p>or</p>
+<pre>openocd -s ~/EmbeddedArm/openocd-bin/share/openocd/scripts/ -f interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg</pre>
+<p>The -s flag sets the search directory that openOCD should search in 
+to locate the appropriate configuration files. The -f flag specifies a 
+particular file within that directory. The first command simply 
+specifies the configuration file for the evaluation board whereas the 
+second specifies the configuration file for the programming interface 
+(“stlink-v2.cfg”) and the target (“stm32f0x_stlink.cfg”). With either 
+command, the OpenOCD gdbserver should successfully be activated as shown
+ in Figures 4 &amp; 5.</p></li>
+</ul>
+<div id="attachment_963" style="width: 654px" class="wp-caption aligncenter"><a href="http://hertaville.com/wp-content/uploads/2013/10/stm32f0lin0105.png"><img class="size-full wp-image-963" alt="Figure 5. OpenOCD successfully installed" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/stm32f0lin0105.png" height="404" width="644"></a><p class="wp-caption-text">Figure 5. OpenOCD successfully installed</p></div>
+<p><strong>OpenOCD vs Texane’s Stlink</strong></p>
+<p>Texane’s stlink tools are dedicated to the ST-Link hardware and work 
+very well for programming and debugging with the ST-Link &amp; ST-Link 
+V/2. I like them because they are is easier to type out, the commands 
+are shorter and can be easily integrated into a makefile.</p>
+<p>OpenOCD is a much more encompassing utility that works with a 
+multitude of Programming/ Debugging hardware and supports a huge list of
+ target microcontroller/ microcontroller architectures. I personally 
+find it a little harder to use, but it can do pretty much everything 
+that Texane’s stlink tools do.</p>
+<p>At this point the “EmbeddedARM” should have 5 folders:</p>
+<ul>
+<li>“<em>gcc-arm-none-eabi-4_7-2013q2</em>“&nbsp; – The ARM toolchain folder</li>
+<li>“<em>openocd-0.7.0</em>” – The openOCD source folder</li>
+<li>“<em>openocd-bin</em>” – The openOCD binary folder</li>
+<li>“stlink”&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; Texane’s stlink utility</li>
+<li>“STM32F0-Discovery_FW_V1.0.0″ – The STM32F0 Discovery standard peripheral library &amp; CMSIS library</li>
+</ul>
+<p>In the next tutorial we will take a look at <a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">using a minimalist integrated development environment from the command line</a>.</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow" class="share-email sd-button share-icon" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?share=email" target="_blank" title="Click to email this to a friend"><span>Email</span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?share=twitter" target="_blank" title="Click to share on Twitter" id="sharing-twitter-948"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?share=facebook" target="_blank" title="Share on Facebook" id="sharing-facebook-948"><span>Facebook</span></a></li><li class="share-linkedin"><a rel="nofollow" class="share-linkedin sd-button share-icon" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?share=linkedin" target="_blank" title="Click to share on LinkedIn" id="sharing-linkedin-948"><span>LinkedIn</span></a></li><li class="share-end"></li></ul></div></div></div>											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://hertaville.com/category/stm32f0discovery/" title="View all posts in Free STM32F0 Development Environment" rel="category tag">Free STM32F0 Development Environment</a>. Bookmark the <a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/" title="Permalink to STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/" rel="prev"><span class="meta-nav">←</span> Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)</a></div>
+					<div class="nav-next"><a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/" rel="next">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">8 Responses to <em>STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-4423">
+		<div id="comment-4423">
+			<div class="comment-author vcard">
+								<cite class="fn">Anwej Alam</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-4423">
+				September 8, 2013 at 10:45 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Thank you so much for this great tutorial…..<br>
+I am really appreciating your effort. But I have stacked  at this point.<br>
+can you tell the what is wrong going on?</p>
+<p>anwej@ubuntu:~/EmbeddedArm/openocd-0.7.0$ ./configure 
+–enable-maintainer-mode –enable-stlink  
+–prefix=$HOME/EmbeddedArm/openocd-bin<br>
+configure: WARNING: you should use –build, –host, –target<br>
+configure: WARNING: invalid host type: –enable-maintainer-mode<br>
+configure: WARNING: you should use –build, –host, –target<br>
+configure: WARNING: invalid host type: –enable-stlink<br>
+configure: error: invalid variable name: `–prefix’<br>
+anwej@ubuntu:~/EmbeddedArm/openocd-0.7.0$</p>
+<p>Thank in Advance</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=4423#respond" onclick='return addComment.moveForm("comment-4423", "4423", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-halherta bypostauthor odd alt depth-2" id="li-comment-4424">
+		<div id="comment-4424">
+			<div class="comment-author vcard">
+								<cite class="fn">halherta</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-4424">
+				September 8, 2013 at 11:00 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Anwej..make sure that there are two dashes before enable i.e. <code>./configure --enable-maintainer-mode --enable-stlink  --prefix=$HOME/EmbeddedArm/openocd-bin</code>. I’m going to make sure that all commands are embedded as code to make them more copy &amp; paste friendly.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=4424#respond" onclick='return addComment.moveForm("comment-4424", "4424", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-4456">
+		<div id="comment-4456">
+			<div class="comment-author vcard">
+				<img alt="" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/e989e0023d162bc2d7e0ffddb14a1a56.png" class="avatar avatar-40 photo" height="40" width="40">				<cite class="fn">Anwej Alam</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-4456">
+				September 9, 2013 at 5:00 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>thank you so much<br>
+I have got the solution</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=4456#respond" onclick='return addComment.moveForm("comment-4456", "4456", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5374">
+		<div id="comment-5374">
+			<div class="comment-author vcard">
+								<cite class="fn">korena</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-5374">
+				September 30, 2013 at 2:26 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>very helpful and detailed. Thank you.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=5374#respond" onclick='return addComment.moveForm("comment-5374", "5374", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href="http://blog.bachi.net/?p=1055" rel="external nofollow" class="url">Andreas' Blog » Blog Archive » OpenJTAG v3.1 from 100ask.net</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-5875">
+		<div id="comment-5875">
+			<div class="comment-author vcard">
+								<cite class="fn">OLS</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-5875">
+				November 13, 2013 at 5:22 pm</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>I’m having troubles with setting up the toolchain properly under Opensuse 12.2.<br>
+I’ve tried under Linux Mint and everything seems to be alright.<br>
+After installing toolchain, execution of make under both listed projects has similar result:<br>
+<code><br>
+porszak@linux-oqbv:~/EmbeddedArm/workspace/iotogglem0&gt; make<br>
+arm-none-eabi-gcc -x assembler-with-cpp -mcpu=cortex-m0 -g -gdwarf-2 
+-mthumb  -Wa,-amhls=startup/startup_stm32f0xx.lst   -o 
+startup/startup_stm32f0xx.o startup/startup_stm32f0xx.s<br>
+/home/porszak/EmbeddedArm/gcc-arm-none-eabi-4_7-2013q3/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-exit.o):
+ In function `exit':<br>
+exit.c:(.text.exit+0x18): undefined reference to `_exit'<br>
+/home/porszak/EmbeddedArm/gcc-arm-none-eabi-4_7-2013q3/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv6-m/crt0.o:
+ In function `start':<br>
+(.text+0x4e): undefined reference to `main'<br>
+/tmp/ccuAK10I.o:(.text+0x0): undefined reference to `_sidata'<br>
+/tmp/ccuAK10I.o:(.text+0x4): undefined reference to `_sdata'<br>
+/tmp/ccuAK10I.o:(.text+0xc): undefined reference to `_sbss'<br>
+/tmp/ccuAK10I.o:(.text+0x10): undefined reference to `_ebss'<br>
+/tmp/ccuAK10I.o: In function `LoopFillZerobss':<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0/startup/startup_stm32f0xx.s:102: undefined reference to `SystemInit'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0/startup/startup_stm32f0xx.s:104: undefined reference to `main'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0/startup/startup_stm32f0xx.s:78: undefined reference to `_sidata'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0/startup/startup_stm32f0xx.s:84: undefined reference to `_sdata'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0/startup/startup_stm32f0xx.s:89: undefined reference to `_sbss'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0/startup/startup_stm32f0xx.s:98: undefined reference to `_ebss'<br>
+/tmp/ccuAK10I.o:(.isr_vector+0x0): undefined reference to `_stack_start'<br>
+collect2: error: ld returned 1 exit status<br>
+make: *** [startup/startup_stm32f0xx.o] Błąd 1<br>
+porszak@linux-oqbv:~/EmbeddedArm/workspace/iotogglem0&gt;</code></p><code>
+</code><p><code>porszak@linux-oqbv:~/EmbeddedArm/workspace/iotogglem0_wspl&gt; make<br>
+arm-none-eabi-gcc -x assembler-with-cpp -mcpu=cortex-m0 -g -gdwarf-2 
+-mthumb  -Wa,-amhls=startup/startup_stm32f0xx.lst   -o 
+startup/startup_stm32f0xx.o startup/startup_stm32f0xx.s<br>
+/home/porszak/EmbeddedArm/gcc-arm-none-eabi-4_7-2013q3/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv6-m/libg.a(lib_a-exit.o):
+ In function `exit':<br>
+exit.c:(.text.exit+0x18): undefined reference to `_exit'<br>
+/home/porszak/EmbeddedArm/gcc-arm-none-eabi-4_7-2013q3/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv6-m/crt0.o:
+ In function `start':<br>
+(.text+0x4e): undefined reference to `main'<br>
+/tmp/ccilAbOx.o:(.text+0x0): undefined reference to `_sidata'<br>
+/tmp/ccilAbOx.o:(.text+0x4): undefined reference to `_sdata'<br>
+/tmp/ccilAbOx.o:(.text+0xc): undefined reference to `_sbss'<br>
+/tmp/ccilAbOx.o:(.text+0x10): undefined reference to `_ebss'<br>
+/tmp/ccilAbOx.o: In function `LoopFillZerobss':<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0_wspl/startup/startup_stm32f0xx.s:102: undefined reference to `SystemInit'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0_wspl/startup/startup_stm32f0xx.s:104: undefined reference to `main'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0_wspl/startup/startup_stm32f0xx.s:78: undefined reference to `_sidata'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0_wspl/startup/startup_stm32f0xx.s:84: undefined reference to `_sdata'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0_wspl/startup/startup_stm32f0xx.s:89: undefined reference to `_sbss'<br>
+/home/porszak/EmbeddedArm/workspace/iotogglem0_wspl/startup/startup_stm32f0xx.s:98: undefined reference to `_ebss'<br>
+/tmp/ccilAbOx.o:(.isr_vector+0x0): undefined reference to `_stack_start'<br>
+collect2: error: ld returned 1 exit status<br>
+make: *** [startup/startup_stm32f0xx.o] Błąd 1<br>
+porszak@linux-oqbv:~/EmbeddedArm/workspace/iotogglem0_wspl&gt;<br>
+</code><br>
+Does anyone has an idea what’s causing those troubles?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=5875#respond" onclick='return addComment.moveForm("comment-5875", "5875", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-5878">
+		<div id="comment-5878">
+			<div class="comment-author vcard">
+				<img alt="" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/82b4910e9be317db4ce0da15f712bb52.png" class="avatar avatar-40 photo" height="40" width="40">				<cite class="fn">OLS</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-5878">
+				November 14, 2013 at 7:40 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>I’ve found what was causing those errors
+ and it wasn’t toolchain like i thought. Makefiles went insane on my 
+opensuse because of the missing dots before the extensions of files. For
+ example there was an %c instead of %.c and %o instead of %.o. I’ve 
+changed those and everything began to work. I suggest to apply those fix
+ to the makefiles. Maybe someone else would like to run them on other 
+linux distribution that does not like the lack of dots.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=5878#respond" onclick='return addComment.moveForm("comment-5878", "5878", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-halherta bypostauthor even depth-3" id="li-comment-5881">
+		<div id="comment-5881">
+			<div class="comment-author vcard">
+				<img alt="" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/140bee725410929bfe5f3db3cf30f795.png" class="avatar avatar-40 photo" height="40" width="40">				<cite class="fn">halherta</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#comment-5881">
+				November 14, 2013 at 10:38 am</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>OLS,thanks for the update! I will update my makefiles.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/?replytocom=5881#respond" onclick='return addComment.moveForm("comment-5881", "5881", "respond", "948")'>Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ol>
+
+
+	
+
+								<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://hertaville.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" size="30" type="text"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
+ href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; 
+&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del 
+datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; 
+&lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" id="submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="948" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="8408b8fc74" type="hidden"></p><p class="comment-subscription-form"><input name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments" style="display: inline;">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts by email.</label></p>					</form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://hertaville.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input name="s" id="s" type="text">
+					<input id="searchsubmit" value="Search" type="submit">
+				</div>
+			</form></li>		<li id="recent-posts-2" class="widget-container widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://hertaville.com/2013/09/28/io-expansion-board-rpi/">I/O Expansion Board Rev0 for the Raspberry Pi</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/09/06/soldered-a-32lqfp-stm32f0-microcontroller/">Hand Soldered a 32LQFP STM32F0 Microcontroller!</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/09/03/stm32f0discovery-command-line-ide/">STM32F0Discovery Under Linux Tutorial Part 2 – Using a Minimalist Integrated Development Environment From the Command Line</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/09/02/stm32f0discovery-part-1-linux/">STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink</a>
+						</li>
+					<li>
+				<a href="http://hertaville.com/2013/07/24/interfacing-an-spi-adc-mcp3008-chip-to-the-raspberry-pi-using-c/">Interfacing an SPI ADC (MCP3008) chip to the Raspberry Pi using C++ (spidev)</a>
+						</li>
+				</ul>
+		</li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href="http://hertaville.com/2013/09/">September 2013</a></li>
+	<li><a href="http://hertaville.com/2013/07/">July 2013</a></li>
+	<li><a href="http://hertaville.com/2013/04/">April 2013</a></li>
+	<li><a href="http://hertaville.com/2013/01/">January 2013</a></li>
+	<li><a href="http://hertaville.com/2012/12/">December 2012</a></li>
+	<li><a href="http://hertaville.com/2012/11/">November 2012</a></li>
+	<li><a href="http://hertaville.com/2012/09/">September 2012</a></li>
+	<li><a href="http://hertaville.com/2012/08/">August 2012</a></li>
+	<li><a href="http://hertaville.com/2012/07/">July 2012</a></li>
+	<li><a href="http://hertaville.com/2012/06/">June 2012</a></li>
+	<li><a href="http://hertaville.com/2012/05/">May 2012</a></li>
+		</ul>
+</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://hertaville.com/category/stm32f0discovery/" title="All things related to the Free STM32F0 Development Environment">Free STM32F0 Development Environment</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://hertaville.com/category/raspberry-pi/" title="View all posts filed under Raspberry Pi">Raspberry Pi</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://hertaville.com/category/raspberry-pi-cross-development/" title="View all posts filed under Raspberry Pi Cross Development">Raspberry Pi Cross Development</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://hertaville.com/category/raspberry-pi-peripherals/" title="View all posts filed under Raspberry Pi Peripherals">Raspberry Pi Peripherals</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://hertaville.com/category/peripherals/" title="View all posts filed under STM32F0 Peripherals">STM32F0 Peripherals</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://hertaville.com/category/the-gcc-build-process/" title="View all posts filed under The GCC Build Process">The GCC Build Process</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://hertaville.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+		</ul>
+</li><li id="recent-comments-2" class="widget-container widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments">Kaushalyas on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-6207">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">Kaushalyas on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-6206">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">halherta on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-5918">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">sakib on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-5917">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li><li class="recentcomments">Jay on <a href="http://hertaville.com/2012/09/28/development-environment-raspberry-pi-cross-compiler/#comment-5893">Development Environment for the Raspberry Pi using a Cross Compiling Toolchain and Eclipse</a></li></ul></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+
+		<div id="secondary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<li id="iclw-2" class="widget-container widget_iclw"><h3 class="widget-title">Links</h3><ul><li><a target="_blank" href="http://www.eeweb.com/">EEWeb.com</a></li><li><a href="http://www.adafruit.com/">Adafruit</a></li><li><a href="http://www.sparkfun.com/">Sparkfun</a></li><li><a href="http://www.raspberrypi.org/">Raspberry Pi Foundation</a></li><li><a href="http://www.hackaday.com/">Hackaday</a></li></ul></li>			</ul>
+		</div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://hertaville.com/" title="Hertaville" rel="home">
+					Hertaville				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-e989e0023d162bc2d7e0ffddb14a1a56">
+	</div>
+	<div class="grofile-hash-map-140bee725410929bfe5f3db3cf30f795">
+	</div>
+	<div class="grofile-hash-map-d170e9fcdcebe5d3a78c4552e65e5000">
+	</div>
+	<div class="grofile-hash-map-82b4910e9be317db4ce0da15f712bb52">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/hertaville.com\/2013\/09\/02\/stm32f0discovery-part-1-linux\/":948}	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="/2013/09/02/stm32f0discovery-part-1-linux/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="text">
+
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="text">
+
+			
+			
+			<img style="float: right; display: none" class="loading" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/loading.gif" alt="loading" height="16" width="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-linkedin' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/devicepx-jetpack.js"></script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/wpgroho.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var recaptcha_options = {"lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Part%201%20%E2%80%93%20Setting%20up%20the%20GCC%20ARM%20Toolchain,%20OpenOCD%20and%20stlink%20%7C%20Hertaville_files/sharing.js"></script>
+
+	
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.6',blog:'37714408',post:'948',tz:'-5'});
+	var load_cmc = function(){linktracker_init(37714408,948,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>
+
+</body></html>

@@ -1,0 +1,7 @@
+/home/claus/arm_embedded/howto_examples/build/src/CMakeFiles/LEDTest.dir
+/home/claus/arm_embedded/howto_examples/build/src/CMakeFiles/MinimalTest.dir
+/home/claus/arm_embedded/howto_examples/build/CMakeFiles/STM32F3Firmware.dir
+/home/claus/arm_embedded/howto_examples/build/CMakeFiles/STM32F3discoveryFirmware.dir
+/home/claus/arm_embedded/howto_examples/build/CMakeFiles/bricked-it.dir
+/home/claus/arm_embedded/howto_examples/build/src/CMakeFiles/download_LEDTest.dir
+/home/claus/arm_embedded/howto_examples/build/src/CMakeFiles/download_MinimalTest.dir

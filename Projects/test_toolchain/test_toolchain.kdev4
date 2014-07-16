@@ -1,0 +1,4 @@
+[Project]
+Name=test_toolchain
+Manager=KDevCMakeManager
+VersionControl=

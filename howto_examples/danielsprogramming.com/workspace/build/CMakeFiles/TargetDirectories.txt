@@ -1,0 +1,3 @@
+/home/claus/arm_embedded/howto_examples/danielsprogramming.com/workspace/build/CMakeFiles/XXX.bin.dir
+/home/claus/arm_embedded/howto_examples/danielsprogramming.com/workspace/build/CMakeFiles/XXX.elf.dir
+/home/claus/arm_embedded/howto_examples/danielsprogramming.com/workspace/build/CMakeFiles/XXX.hex.dir

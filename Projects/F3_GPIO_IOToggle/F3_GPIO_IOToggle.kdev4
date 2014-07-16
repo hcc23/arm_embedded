@@ -1,0 +1,4 @@
+[Project]
+Name=F3_GPIO_IOToggle
+Manager=KDevCMakeManager
+VersionControl=

@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+2bca65ae77e746006d0802b2a184f341 CMakeFiles/XXX.bin
+220b8bcf01430b3639197e9d988365bf CMakeFiles/XXX.hex

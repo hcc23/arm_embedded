@@ -1,0 +1,1 @@
+/usr/bin/cc  -g    CMakeFiles/test_barebone.dir/main.obj  -o test_barebone  

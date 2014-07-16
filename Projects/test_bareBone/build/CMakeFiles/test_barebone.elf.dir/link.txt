@@ -1,0 +1,1 @@
+/usr/bin/cc  -g    CMakeFiles/test_barebone.elf.dir/main.c.obj  -o test_barebone.elf  

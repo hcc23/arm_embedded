@@ -1,0 +1,6 @@
+/home/claus/arm_embedded/stm32/Projects/demo/build/CMakeFiles/STM32F3-Discovery.dir
+/home/claus/arm_embedded/stm32/Projects/demo/build/CMakeFiles/STM32F30x_StdPeriph_Driver.dir
+/home/claus/arm_embedded/stm32/Projects/demo/build/CMakeFiles/STM32_USB-FS-Device_Driver.dir
+/home/claus/arm_embedded/stm32/Projects/demo/build/CMakeFiles/demo.bin.dir
+/home/claus/arm_embedded/stm32/Projects/demo/build/CMakeFiles/demo.elf.dir
+/home/claus/arm_embedded/stm32/Projects/demo/build/CMakeFiles/demo.hex.dir

@@ -1,0 +1,3 @@
+/home/claus/arm_embedded/stm32/Projects/test_bareBone/build/CMakeFiles/test_barebone.bin.dir
+/home/claus/arm_embedded/stm32/Projects/test_bareBone/build/CMakeFiles/test_barebone.elf.dir
+/home/claus/arm_embedded/stm32/Projects/test_bareBone/build/CMakeFiles/test_barebone.hex.dir

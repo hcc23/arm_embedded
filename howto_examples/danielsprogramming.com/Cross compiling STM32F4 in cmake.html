@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Daniels programming site » Cross compiling STM32F4 in cmake</title>
+<meta name="generator" content="WordPress 3.6.1">
+<link rel="stylesheet" href="Cross%20compiling%20STM32F4%20in%20cmake_files/style.css" type="text/css" media="screen">
+<link rel="shortcut icon" type="image/ico" href="http://www.danielsprogramming.com/wp-content/themes/coogee/images/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Daniels programming site RSS Feed" href="http://www.danielsprogramming.com/?feed=rss2">
+<link rel="pingback" href="http://www.danielsprogramming.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="Daniels programming site » Cross compiling STM32F4 in cmake Comments Feed" href="http://www.danielsprogramming.com/?feed=rss2&amp;p=732">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.danielsprogramming.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.danielsprogramming.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Build googletest and googlemock for mingw" href="http://www.danielsprogramming.com/?p=728">
+<link rel="next" title="Python subprocess" href="http://www.danielsprogramming.com/?p=746">
+<meta name="generator" content="WordPress 3.6.1">
+<link rel="canonical" href="http://www.danielsprogramming.com/?p=732">
+	<link href="Cross%20compiling%20STM32F4%20in%20cmake_files/SyntaxHighlighter.css" type="text/css" rel="stylesheet">
+	<style type="text/css" media="screen">
+a.avatarpop, span.avatarpop {
+	position:relative  !important;
+	text-decoration: none !important;
+	border-bottom: 1px dotted silver !important;
+}
+a.avatarpop img, span.avatarpop img {
+	display: none !important;
+}
+a.avatarpop:hover img, span.avatarpop:hover img {
+	display: block !important;
+	position: absolute !important;
+	padding: 3px !important;
+	margin: 10px !important;
+	top: 1.5em !important;
+	z-index: 100 !important;
+	color: #ddd !important;
+	background: white !important;
+	border-top:1px solid #ddd !important;
+	border-right:1px solid #ddd !important;
+	border-bottom:1px solid #555 !important;
+	border-left:1px solid #555 !important;
+}
+</style></head>
+
+<body>
+
+<div id="page">
+
+	<div id="header">
+		<div class="header_wrapper">
+			<div class="header_left">
+				<h1><a href="http://www.danielsprogramming.com/">Daniels programming site</a></h1>
+				<h2>My programming notebook</h2>
+			</div>
+			
+			<div class="header_right">
+				<ul>
+				<li><a href="http://www.danielsprogramming.com/">Home</a></li>
+        <li class="page_item page-item-2"><a href="http://www.danielsprogramming.com/?page_id=2">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div><div id="container">
+	<div id="main">
+    		<div class="post" id="post-732">
+			<div class="postdate">
+				<div class="month">Feb</div>
+        <div class="date">04</div>
+      </div><!-- end postdate -->
+      <div class="title">
+				<h2><a href="http://www.danielsprogramming.com/?p=732" rel="bookmark" title="Permanent Link to Cross compiling STM32F4 in cmake">Cross compiling STM32F4 in cmake</a></h2>
+				<div class="postmeta">
+					<span class="postmeta_author">dllg</span>
+					<span class="postmeta_category"><a href="http://www.danielsprogramming.com/?cat=6" title="View all posts in CMake" rel="category">CMake</a>, <a href="http://www.danielsprogramming.com/?cat=52" title="View all posts in stm32" rel="category">stm32</a>, <a href="http://www.danielsprogramming.com/?cat=8" title="View all posts in Windows" rel="category">Windows</a></span>					
+					<span class="postmeta_time">2013-02-04</span>
+				</div><!-- end postmeta -->
+		  </div><!-- end title -->
+        
+      <div class="entry">
+				
+Warning: file_exists(): File name is longer than the maximum allowed 
+path length on this platform (4096): 
+/home/virtual/danielsprogramming.com/public_html/wp-content/EmailToImage/<c>Fgnegrq grfgvat FGZ32S4 naq ubjgb pebffpbzcvyr vg hfvat pznxr va Jvaqbjf.</c>
+<c>Guvf vf ubj V perngrq n fvzcyr PZnxrYvfgf.gkg jvgu gur svyrf fgz32s4kk_vg.p, flfgrz_fgz32s4kk.p, fgneghc_fgz32s4kk.F naq znva.p.</c>
+<c>Svefg lbh arrq n gbbypunva svyr sbe gur pebffpbzcvyngvba anzrq fgz32s4.pznxr:</c>
+<cer anzr="pbqr" pynff="p++">
+VAPYHQR(PZnxrSbeprPbzcvyre)
+
+# gur anzr bs gur gnetrg bcrengvat flfgrz
+FRG(PZNXR_FLFGRZ_ANZR Trarevp)
+
+FRG(PCERS nez-abar-rnov)
+FRG(PZNXR_P_PBZCVYRE ${PCERS}-tpp)
+FRG(PZNXR_PKK_PBZCVYRE ${PCERS}-t++)
+FRG(NF "nez-abar-rnov-tpp -k -nffrzoyre-jvgu-pcc")
+FRG(NE ${PCERS}-ne)
+FRG(YQ ${PCERS}-yq)
+FRG(AZ ${PCERS}-az)
+FRG(BOWPBCL ${PCERS}-bowpbcl)
+FRG(BOWQHZC ${PCERS}-bowqhzc)
+FRG(ERNQRYS ${PCERS}-ernqrys)
+
+PZNXR_SBEPR_P_PBZCVYRE(${PCERS}-tpp TAH)
+PZNXR_SBEPR_PKK_PBZCVYRE(${PCERS}-t++ TAH)
+
+# urer vf gur g in 
+/home/virtual/danielsprogramming.com/public_html/wp-content/plugins/email-2-image/emailtoimage.php
+ on line 172
+
+Warning: file_exists(): File name is longer than the maximum allowed 
+path length on this platform (4096): 
+/home/virtual/danielsprogramming.com/public_html/wp-content/plugins/email-2-image/<p>Started testing STM32F4 and howto crosscompile it using cmake in Windows.</p>
+<p>This is how I created a simple CMakeLists.txt with the files stm32f4xx_it.c, system_stm32f4xx.c, startup_stm32f4xx.S and main.c.</p>
+<p>First you need a toolchain file for the crosscompilation named stm32f4.cmake:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-cpp" start="1"><li class="alt"><span><span>INCLUDE(CMakeForceCompiler)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;target&nbsp;operating&nbsp;system</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_SYSTEM_NAME&nbsp;Generic)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(CPREF&nbsp;arm-none-eabi)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_C_COMPILER&nbsp;${CPREF}-gcc)&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_CXX_COMPILER&nbsp;${CPREF}-g++)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(AS&nbsp;<span class="string">"arm-none-eabi-gcc&nbsp;-x&nbsp;-assembler-with-cpp"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(AR&nbsp;${CPREF}-ar)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(LD&nbsp;${CPREF}-ld)&nbsp;&nbsp;</span></li><li class=""><span>SET(NM&nbsp;${CPREF}-nm)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(OBJCOPY&nbsp;${CPREF}-objcopy)&nbsp;&nbsp;</span></li><li class=""><span>SET(OBJDUMP&nbsp;${CPREF}-objdump)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(READELF&nbsp;${CPREF}-readelf)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>CMAKE_FORCE_C_COMPILER(${CPREF}-gcc&nbsp;GNU)&nbsp;&nbsp;</span></li><li class=""><span>CMAKE_FORCE_CXX_COMPILER(${CPREF}-g++&nbsp;GNU)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#&nbsp;here&nbsp;in&nbsp;/home/virtual/danielsprogramming.com/public_html/wp-content/plugins/email-2-image/emailtoimage.php&nbsp;on&nbsp;line&nbsp;188</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&lt;p&gt;Started&nbsp;testing&nbsp;STM32F4&nbsp;and&nbsp;howto&nbsp;crosscompile&nbsp;it&nbsp;<span class="keyword">using</span><span>&nbsp;cmake&nbsp;in&nbsp;Windows.&lt;/p&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;p&gt;This&nbsp;is&nbsp;how&nbsp;I&nbsp;created&nbsp;a&nbsp;simple&nbsp;CMakeLists.txt&nbsp;with&nbsp;the&nbsp;files&nbsp;stm32f4xx_it.c,&nbsp;system_stm32f4xx.c,&nbsp;startup_stm32f4xx.S&nbsp;and&nbsp;main.c.&lt;/p&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;p&gt;First&nbsp;you&nbsp;need&nbsp;a&nbsp;toolchain&nbsp;file&nbsp;<span class="keyword">for</span><span>&nbsp;the&nbsp;crosscompilation&nbsp;named&nbsp;stm32f4.cmake:&lt;/p&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;pre&nbsp;name=<span class="string">"code"</span><span>&nbsp;</span><span class="keyword">class</span><span>=</span><span class="string">"c++"</span><span>&gt;INCLUDE(CMakeForceCompiler)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;target&nbsp;operating&nbsp;system</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_SYSTEM_NAME&nbsp;Generic)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CPREF&nbsp;arm-none-eabi)&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_C_COMPILER&nbsp;${CPREF}-gcc)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_CXX_COMPILER&nbsp;${CPREF}-g++)&nbsp;&nbsp;</span></li><li class=""><span>SET(AS&nbsp;<span class="string">"arm-none-eabi-gcc&nbsp;-x&nbsp;-assembler-with-cpp"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(AR&nbsp;${CPREF}-ar)&nbsp;&nbsp;</span></li><li class=""><span>SET(LD&nbsp;${CPREF}-ld)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(NM&nbsp;${CPREF}-nm)&nbsp;&nbsp;</span></li><li class=""><span>SET(OBJCOPY&nbsp;${CPREF}-objcopy)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(OBJDUMP&nbsp;${CPREF}-objdump)&nbsp;&nbsp;</span></li><li class=""><span>SET(READELF&nbsp;${CPREF}-readelf)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>CMAKE_FORCE_C_COMPILER(${CPREF}-gcc&nbsp;GNU)&nbsp;&nbsp;</span></li><li class="alt"><span>CMAKE_FORCE_CXX_COMPILER(${CPREF}-g++&nbsp;GNU)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#&nbsp;here&nbsp;is&nbsp;the&nbsp;target&nbsp;environment&nbsp;is&nbsp;located</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_FIND_ROOT_PATH&nbsp;&nbsp;C:/PROG/GCC_ARM)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#&nbsp;adjust&nbsp;the&nbsp;default&nbsp;behaviour&nbsp;of&nbsp;the&nbsp;FIND_XXX()&nbsp;commands:</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="preprocessor">#&nbsp;search&nbsp;headers&nbsp;and&nbsp;libraries&nbsp;in&nbsp;the&nbsp;target&nbsp;environment,&nbsp;search&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="preprocessor">#&nbsp;programs&nbsp;in&nbsp;the&nbsp;host&nbsp;environment</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM&nbsp;NEVER)&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY&nbsp;ONLY)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE&nbsp;ONLY)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>SET(MCU&nbsp;cortex-m4)&nbsp;&nbsp;</span></li><li class=""><span>SET(MCFLAGS&nbsp;<span class="string">"-mcpu=${MCU}&nbsp;-mthumb&nbsp;-mlittle-endian&nbsp;-mfpu=fpv4-sp-d16&nbsp;-mfloat-abi=hard"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_ASM_FLAGS&nbsp;<span class="string">"${MCFLAGS}"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_C_FLAGS&nbsp;<span class="string">"${MCFLAGS}&nbsp;-ffunction-sections&nbsp;-std=c99&nbsp;-fdata-sections&nbsp;-Wall&nbsp;-Wstrict-prototypes&nbsp;-fverbose-asm"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_CXX_FLAGS&nbsp;<span class="string">"${MCFLAGS}&nbsp;-ffunction-sections&nbsp;-std=c++98&nbsp;-fno-builtin&nbsp;-fdata-sections&nbsp;-Wall&nbsp;-Wstrict-prototypes&nbsp;-fverbose-asm&nbsp;-fno-rtti&nbsp;-fno-exceptions"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_C_FLAGS_DEBUG&nbsp;<span class="string">"-O0&nbsp;-g&nbsp;-gstabs+"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_CXX_FLAGS_DEBUG&nbsp;<span class="string">"-O0&nbsp;-g&nbsp;-gstabs+"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_ASM_FLAGS_DEBUG&nbsp;<span class="string">"-g&nbsp;-gstabs+"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_C_FLAGS_RELEASE&nbsp;<span class="string">"-Os"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_CXX_FLAGS_RELEASE&nbsp;<span class="string">"-Os"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_ASM_FLAGS_RELEASE&nbsp;<span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_EXE_LINKER_FLAGS&nbsp;<span class="string">"${MCFLAGS}&nbsp;-T${LDSCRIPT}&nbsp;-Wl,-Map=$(PRJ).map,--cref,--no-warn-mismatch&nbsp;-Wl,--gc-sections&nbsp;-Wl,--defsym=malloc_getpagesize_P=0x1000"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_MODULE_LINKER_FLAGS&nbsp;<span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_SHARED_LINKER_FLAGS&nbsp;<span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;/pre&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;p&gt;And&nbsp;ofcourse&nbsp;the&nbsp;CMakeLists.txt&nbsp;file&nbsp;<span class="keyword">for</span><span>&nbsp;the&nbsp;project:&lt;/p&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;pre&nbsp;name=<span class="string">"code"</span><span>&nbsp;</span><span class="keyword">class</span><span>=</span><span class="string">"c++"</span><span>&gt;PROJECT(XXX)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(PRJ&nbsp;<span class="string">"XXX"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(LDSCRIPT&nbsp;<span class="string">"${CMAKE_CURRENT_SOURCE_DIR}/Link/stm32f4xx_flash.ld"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>ENABLE_LANGUAGE(ASM)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/stm32f4.cmake)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#&nbsp;set&nbsp;minimum&nbsp;cmake&nbsp;version</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>cmake_minimum_required(VERSION&nbsp;2.6)&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">if</span><span>(COMMAND&nbsp;cmake_policy)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;cmake_policy(SET&nbsp;CMP0003&nbsp;NEW)&nbsp;&nbsp;</span></li><li class="alt"><span>endif(COMMAND&nbsp;cmake_policy)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#&nbsp;Uncomment&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;do&nbsp;profiling&nbsp;with&nbsp;gprof</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="preprocessor">#&nbsp;SET(CMAKE_CXX_FLAGS&nbsp;"-pg")</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#include&nbsp;directories</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>INCLUDE_DIRECTORIES(&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/Board/inc&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/Main/inc&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/CMSIS/inc&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/STM32F4xx_StdPeriph_Driver/inc)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>ADD_EXECUTABLE(${CMAKE_PROJECT_NAME}.elf&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Board/src/stm32f4xx_it.c&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Board/src/system_stm32f4xx.c&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Main/src/main.c&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Board/src/startup_stm32f4xx.S)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>ADD_CUSTOM_TARGET(${CMAKE_PROJECT_NAME}.hex&nbsp;ALL&nbsp;DEPENDS&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;COMMAND&nbsp;${CMAKE_OBJCOPY}&nbsp;-Oihex&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;${CMAKE_PROJECT_NAME}.hex)&nbsp;&nbsp;</span></li><li class=""><span>ADD_CUSTOM_TARGET(${CMAKE_PROJECT_NAME}.bin&nbsp;ALL&nbsp;DEPENDS&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;COMMAND&nbsp;${CMAKE_OBJCOPY}&nbsp;-Obinary&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;${CMAKE_PROJECT_NAME}.bin)&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;/pre&gt;&nbsp;&nbsp;</span></li><li class=""><span>&lt;p&gt;And&nbsp;to&nbsp;crosscompile&nbsp;the&nbsp;project&nbsp;XXX&nbsp;you&nbsp;<span class="keyword">do</span><span>:&lt;/p&gt;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&lt;p&gt;&lt;b&gt;&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>1.&nbsp;cd&nbsp;XXX&lt;br&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>2.&nbsp;mkdir&nbsp;build&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>3.&nbsp;cd&nbsp;build&lt;br&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>4.&nbsp;cmake&nbsp;-G&nbsp;“Unix&nbsp;Makefiles”&nbsp;-DCMAKE_TOOLCHAIN_FILE=../stm32f4.cmake&nbsp;..&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>5.&nbsp;make&lt;br&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;/b&gt;&lt;/p&gt;&nbsp;&nbsp;</span></li><li class=""><span>&lt;p&gt;If&nbsp;you&nbsp;want&nbsp;a&nbsp;Eclipse&nbsp;project&nbsp;see&nbsp;&lt;a&nbsp;href=<span class="string">"http://www.danielsprogramming.com/?p=587"</span><span>&gt;Using&nbsp;eclipse&nbsp;and&nbsp;cmake&lt;/a&gt;.&lt;/p&gt;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&lt;p&gt;The&nbsp;commands&nbsp;required&nbsp;to&nbsp;create&nbsp;cmake&nbsp;eclipse&nbsp;project&nbsp;would&nbsp;then&nbsp;be:&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>&lt;b&gt;&lt;br&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>1.&nbsp;cd&nbsp;XXX&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>2.&nbsp;cd&nbsp;..&lt;br&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>3.&nbsp;mkdir&nbsp;eclipse&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>4.&nbsp;cd&nbsp;eclipse&lt;br&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>5.&nbsp;cmake&nbsp;-G&nbsp;“Eclipse&nbsp;CDT4&nbsp;–&nbsp;Unix&nbsp;Makefiles”&nbsp;-DCMAKE_TOOLCHAIN_FILE=../XXX/stm32f4.cmake&nbsp;-DCMAKE_BUILD_TYPE=Debug&nbsp;../XXX&lt;br&gt;&nbsp;&nbsp;</span></li><li class=""><span>&lt;/b&gt;&lt;/p&gt;&nbsp;&nbsp;</span></li><li class="alt"><span>&lt;div&nbsp;<span class="keyword">class</span><span>=</span><span class="string">"EMITAB"</span><span>&nbsp;style=</span><span class="string">"display:none;"</span><span>&gt;&lt;a&nbsp;href=</span><span class="string">"http://arturoemilio.es"</span><span>&nbsp;rel=</span><span class="string">"dofollow"</span><span>&gt;EmailtoImage&lt;/a&gt;&lt;/div&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;style=</span><span class="string">"clear:both;"</span><span>&gt;&lt;/div&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="c++">INCLUDE(CMakeForceCompiler)
+
+# the name of the target operating system
+SET(CMAKE_SYSTEM_NAME Generic)
+
+SET(CPREF arm-none-eabi)
+SET(CMAKE_C_COMPILER ${CPREF}-gcc)
+SET(CMAKE_CXX_COMPILER ${CPREF}-g++)
+SET(AS "arm-none-eabi-gcc -x -assembler-with-cpp")
+SET(AR ${CPREF}-ar)
+SET(LD ${CPREF}-ld)
+SET(NM ${CPREF}-nm)
+SET(OBJCOPY ${CPREF}-objcopy)
+SET(OBJDUMP ${CPREF}-objdump)
+SET(READELF ${CPREF}-readelf)
+
+CMAKE_FORCE_C_COMPILER(${CPREF}-gcc GNU)
+CMAKE_FORCE_CXX_COMPILER(${CPREF}-g++ GNU)
+
+# here in /home/virtual/danielsprogramming.com/public_html/wp-content/plugins/email-2-image/emailtoimage.php on line 188
+<p>Started testing STM32F4 and howto crosscompile it using cmake in Windows.</p>
+<p>This is how I created a simple CMakeLists.txt with the files stm32f4xx_it.c, system_stm32f4xx.c, startup_stm32f4xx.S and main.c.</p>
+<p>First you need a toolchain file for the crosscompilation named stm32f4.cmake:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-cpp" start="1"><li class="alt"><span><span>INCLUDE(CMakeForceCompiler)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;target&nbsp;operating&nbsp;system</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_SYSTEM_NAME&nbsp;Generic)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(CPREF&nbsp;arm-none-eabi)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_C_COMPILER&nbsp;${CPREF}-gcc)&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_CXX_COMPILER&nbsp;${CPREF}-g++)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(AS&nbsp;<span class="string">"arm-none-eabi-gcc&nbsp;-x&nbsp;-assembler-with-cpp"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(AR&nbsp;${CPREF}-ar)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(LD&nbsp;${CPREF}-ld)&nbsp;&nbsp;</span></li><li class=""><span>SET(NM&nbsp;${CPREF}-nm)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(OBJCOPY&nbsp;${CPREF}-objcopy)&nbsp;&nbsp;</span></li><li class=""><span>SET(OBJDUMP&nbsp;${CPREF}-objdump)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(READELF&nbsp;${CPREF}-readelf)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>CMAKE_FORCE_C_COMPILER(${CPREF}-gcc&nbsp;GNU)&nbsp;&nbsp;</span></li><li class=""><span>CMAKE_FORCE_CXX_COMPILER(${CPREF}-g++&nbsp;GNU)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#&nbsp;here&nbsp;is&nbsp;the&nbsp;target&nbsp;environment&nbsp;is&nbsp;located</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_FIND_ROOT_PATH&nbsp;&nbsp;C:/PROG/GCC_ARM)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#&nbsp;adjust&nbsp;the&nbsp;default&nbsp;behaviour&nbsp;of&nbsp;the&nbsp;FIND_XXX()&nbsp;commands:</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="preprocessor">#&nbsp;search&nbsp;headers&nbsp;and&nbsp;libraries&nbsp;in&nbsp;the&nbsp;target&nbsp;environment,&nbsp;search&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="preprocessor">#&nbsp;programs&nbsp;in&nbsp;the&nbsp;host&nbsp;environment</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM&nbsp;NEVER)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY&nbsp;ONLY)&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE&nbsp;ONLY)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(MCU&nbsp;cortex-m4)&nbsp;&nbsp;</span></li><li class="alt"><span>SET(MCFLAGS&nbsp;<span class="string">"-mcpu=${MCU}&nbsp;-mthumb&nbsp;-mlittle-endian&nbsp;-mfpu=fpv4-sp-d16&nbsp;-mfloat-abi=hard"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_ASM_FLAGS&nbsp;<span class="string">"${MCFLAGS}"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_C_FLAGS&nbsp;<span class="string">"${MCFLAGS}&nbsp;-ffunction-sections&nbsp;-std=c99&nbsp;-fdata-sections&nbsp;-Wall&nbsp;-Wstrict-prototypes&nbsp;-fverbose-asm"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_CXX_FLAGS&nbsp;<span class="string">"${MCFLAGS}&nbsp;-ffunction-sections&nbsp;-std=c++98&nbsp;-fno-builtin&nbsp;-fdata-sections&nbsp;-Wall&nbsp;-Wstrict-prototypes&nbsp;-fverbose-asm&nbsp;-fno-rtti&nbsp;-fno-exceptions"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_C_FLAGS_DEBUG&nbsp;<span class="string">"-O0&nbsp;-g&nbsp;-gstabs+"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_CXX_FLAGS_DEBUG&nbsp;<span class="string">"-O0&nbsp;-g&nbsp;-gstabs+"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_ASM_FLAGS_DEBUG&nbsp;<span class="string">"-g&nbsp;-gstabs+"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_C_FLAGS_RELEASE&nbsp;<span class="string">"-Os"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_CXX_FLAGS_RELEASE&nbsp;<span class="string">"-Os"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_ASM_FLAGS_RELEASE&nbsp;<span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>SET(CMAKE_EXE_LINKER_FLAGS&nbsp;<span class="string">"${MCFLAGS}&nbsp;-T${LDSCRIPT}&nbsp;-Wl,-Map=$(PRJ).map,--cref,--no-warn-mismatch&nbsp;-Wl,--gc-sections&nbsp;-Wl,--defsym=malloc_getpagesize_P=0x1000"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>SET(CMAKE_MODULE_LINKER_FLAGS&nbsp;<span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(CMAKE_SHARED_LINKER_FLAGS&nbsp;<span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li></ol></div><pre style="display: none;" name="code" class="c++">INCLUDE(CMakeForceCompiler)
+
+# the name of the target operating system
+SET(CMAKE_SYSTEM_NAME Generic)
+
+SET(CPREF arm-none-eabi)
+SET(CMAKE_C_COMPILER ${CPREF}-gcc)
+SET(CMAKE_CXX_COMPILER ${CPREF}-g++)
+SET(AS "arm-none-eabi-gcc -x -assembler-with-cpp")
+SET(AR ${CPREF}-ar)
+SET(LD ${CPREF}-ld)
+SET(NM ${CPREF}-nm)
+SET(OBJCOPY ${CPREF}-objcopy)
+SET(OBJDUMP ${CPREF}-objdump)
+SET(READELF ${CPREF}-readelf)
+
+CMAKE_FORCE_C_COMPILER(${CPREF}-gcc GNU)
+CMAKE_FORCE_CXX_COMPILER(${CPREF}-g++ GNU)
+
+# here is the target environment is located
+SET(CMAKE_FIND_ROOT_PATH  C:/PROG/GCC_ARM)
+
+# adjust the default behaviour of the FIND_XXX() commands:
+# search headers and libraries in the target environment, search 
+# programs in the host environment
+SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+SET(MCU cortex-m4)
+SET(MCFLAGS "-mcpu=${MCU} -mthumb -mlittle-endian -mfpu=fpv4-sp-d16 -mfloat-abi=hard")
+SET(CMAKE_ASM_FLAGS "${MCFLAGS}")
+SET(CMAKE_C_FLAGS "${MCFLAGS} -ffunction-sections -std=c99 -fdata-sections -Wall -Wstrict-prototypes -fverbose-asm")
+SET(CMAKE_CXX_FLAGS "${MCFLAGS} -ffunction-sections -std=c++98 -fno-builtin -fdata-sections -Wall -Wstrict-prototypes -fverbose-asm -fno-rtti -fno-exceptions")
+
+SET(CMAKE_C_FLAGS_DEBUG "-O0 -g -gstabs+")
+SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -gstabs+")
+SET(CMAKE_ASM_FLAGS_DEBUG "-g -gstabs+")
+
+SET(CMAKE_C_FLAGS_RELEASE "-Os")
+SET(CMAKE_CXX_FLAGS_RELEASE "-Os")
+SET(CMAKE_ASM_FLAGS_RELEASE "")
+
+SET(CMAKE_EXE_LINKER_FLAGS "${MCFLAGS} -T${LDSCRIPT} -Wl,-Map=$(PRJ).map,--cref,--no-warn-mismatch -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000")
+SET(CMAKE_MODULE_LINKER_FLAGS "")
+SET(CMAKE_SHARED_LINKER_FLAGS "")
+</pre>
+<p>And ofcourse the CMakeLists.txt file for the project:</p>
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-cpp" start="1"><li class="alt"><span><span>PROJECT(XXX)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>SET(PRJ&nbsp;<span class="string">"XXX"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>SET(LDSCRIPT&nbsp;<span class="string">"${CMAKE_CURRENT_SOURCE_DIR}/Link/stm32f4xx_flash.ld"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>ENABLE_LANGUAGE(ASM)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/stm32f4.cmake)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#&nbsp;set&nbsp;minimum&nbsp;cmake&nbsp;version</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>cmake_minimum_required(VERSION&nbsp;2.6)&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">if</span><span>(COMMAND&nbsp;cmake_policy)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;cmake_policy(SET&nbsp;CMP0003&nbsp;NEW)&nbsp;&nbsp;</span></li><li class=""><span>endif(COMMAND&nbsp;cmake_policy)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="preprocessor">#&nbsp;Uncomment&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;do&nbsp;profiling&nbsp;with&nbsp;gprof</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="preprocessor">#&nbsp;SET(CMAKE_CXX_FLAGS&nbsp;"-pg")</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="preprocessor">#include&nbsp;directories</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>INCLUDE_DIRECTORIES(&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/Board/inc&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/Main/inc&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/CMSIS/inc&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/STM32F4xx_StdPeriph_Driver/inc)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>ADD_EXECUTABLE(${CMAKE_PROJECT_NAME}.elf&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Board/src/stm32f4xx_it.c&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Board/src/system_stm32f4xx.c&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Main/src/main.c&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Board/src/startup_stm32f4xx.S)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>ADD_CUSTOM_TARGET(${CMAKE_PROJECT_NAME}.hex&nbsp;ALL&nbsp;DEPENDS&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;COMMAND&nbsp;${CMAKE_OBJCOPY}&nbsp;-Oihex&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;${CMAKE_PROJECT_NAME}.hex)&nbsp;&nbsp;</span></li><li class="alt"><span>ADD_CUSTOM_TARGET(${CMAKE_PROJECT_NAME}.bin&nbsp;ALL&nbsp;DEPENDS&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;COMMAND&nbsp;${CMAKE_OBJCOPY}&nbsp;-Obinary&nbsp;${CMAKE_PROJECT_NAME}.elf&nbsp;${CMAKE_PROJECT_NAME}.bin)&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="c++">PROJECT(XXX)
+
+SET(PRJ "XXX")
+SET(LDSCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/Link/stm32f4xx_flash.ld")
+
+ENABLE_LANGUAGE(ASM)
+
+INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/stm32f4.cmake)
+
+# set minimum cmake version
+cmake_minimum_required(VERSION 2.6)
+if(COMMAND cmake_policy)
+  cmake_policy(SET CMP0003 NEW)
+endif(COMMAND cmake_policy)
+
+# Uncomment if you want to do profiling with gprof
+# SET(CMAKE_CXX_FLAGS "-pg")
+
+#include directories
+INCLUDE_DIRECTORIES(
+	${CMAKE_CURRENT_SOURCE_DIR}/Board/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/Main/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/CMSIS/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/STM32F4xx_StdPeriph_Driver/inc)
+	
+ADD_EXECUTABLE(${CMAKE_PROJECT_NAME}.elf 
+	Board/src/stm32f4xx_it.c
+	Board/src/system_stm32f4xx.c
+	Main/src/main.c
+	Board/src/startup_stm32f4xx.S)
+
+ADD_CUSTOM_TARGET(${CMAKE_PROJECT_NAME}.hex ALL DEPENDS ${CMAKE_PROJECT_NAME}.elf COMMAND ${CMAKE_OBJCOPY} -Oihex ${CMAKE_PROJECT_NAME}.elf ${CMAKE_PROJECT_NAME}.hex)
+ADD_CUSTOM_TARGET(${CMAKE_PROJECT_NAME}.bin ALL DEPENDS ${CMAKE_PROJECT_NAME}.elf COMMAND ${CMAKE_OBJCOPY} -Obinary ${CMAKE_PROJECT_NAME}.elf ${CMAKE_PROJECT_NAME}.bin)
+</pre>
+<p>And to crosscompile the project XXX you do:</p>
+<p><b><br>
+1. cd XXX<br>
+2. mkdir build<br>
+3. cd build<br>
+4. cmake -G “Unix Makefiles” -DCMAKE_TOOLCHAIN_FILE=../stm32f4.cmake ..<br>
+5. make<br>
+</b></p>
+<p>If you want a Eclipse project see <a href="http://www.danielsprogramming.com/?p=587">Using eclipse and cmake</a>.</p>
+<p>The commands required to create cmake eclipse project would then be:<br>
+<b><br>
+1. cd XXX<br>
+2. cd ..<br>
+3. mkdir eclipse<br>
+4. cd eclipse<br>
+5. cmake -G “Eclipse CDT4 – Unix Makefiles” -DCMAKE_TOOLCHAIN_FILE=../XXX/stm32f4.cmake -DCMAKE_BUILD_TYPE=Debug ../XXX<br>
+</b></p>
+<div class="EMITAB" style="display:none;"><a href="http://arturoemilio.es/" rel="dofollow">EmailtoImage</a></div>			  <div style="clear:both;"></div>
+			</pre></cer></div><!-- end entry -->
+			
+			      <div class="info">
+				Address:  <a href="http://www.danielsprogramming.com/?p=732" rel="bookmark" title="Cross compiling STM32F4 in cmake">http://www.danielsprogramming.com/?p=732</a>
+      </div><!-- end info -->
+      
+          </div><!-- end post --> 
+    
+		<div class="navi">
+			<div class="left">« <a href="http://www.danielsprogramming.com/?p=728" rel="prev">Build googletest and googlemock for mingw</a></div>
+			<div class="right"><a href="http://www.danielsprogramming.com/?p=746" rel="next">Python subprocess</a>  »</div>
+			<div style="clear:both;"></div>
+		</div><!-- end navi -->
+    
+		
+<!-- You can start editing here. -->
+<div class="commentstitle"><span class="trackback"><a href="http://www.danielsprogramming.com/wp-trackback.php?p=732" rel="trackback" title="Trackback URI">Trackback</a></span><h3 id="comments"><span class="commentsnumber">no comment</span> untill now</h3></div>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<div id="commentform">
+<h3 id="respond">Add your comment now</h3>
+
+
+<form action="http://www.danielsprogramming.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input name="author" id="author" size="25" tabindex="1" class="comment_input" type="text">
+<label for="author">Name (required)</label></p>
+
+<p><input name="email" id="email" size="25" tabindex="2" class="comment_input" type="text">
+<label for="email">Email (Will NOT be published) (required)</label></p>
+
+<p><input name="url" id="url" size="25" tabindex="3" class="comment_input" type="text">
+<label for="url">URL</label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+
+<p><textarea name="comment" id="comment" cols="25" rows="5" tabindex="4" class="message_input"></textarea></p>
+
+<p><input name="submit" id="submit" tabindex="5" value="Submit" class="button" type="submit">
+<input name="comment_post_ID" value="732" type="hidden">
+</p><p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="013181db0a" type="hidden"></p><p></p>
+
+</form>
+</div>
+
+
+				 
+	</div><!-- end main --> 
+<div id="sidebar">
+	<ul>
+		
+		<li id="search">
+  <form id="searchform" action="http://www.danielsprogramming.com" method="get">
+	<input id="searchinput" name="s" class="searchinput" value="Keywords..." onfocus="if (this.value == 'Keywords...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Keywords...';}" type="text">
+	<input id="searchsubmit" value="" type="submit">
+	</form>
+</li>
+
+<li id="tag_cloud-3" class="widget widget_tag_cloud"><h2 class="widgettitle">Categories</h2>
+<div class="tagcloud"><a href="http://www.danielsprogramming.com/?cat=37" class="tag-link-37" title="1 topic" style="font-size: 8pt;">android</a>
+<a href="http://www.danielsprogramming.com/?cat=17" class="tag-link-17" title="7 topics" style="font-size: 14.176470588235pt;">bash</a>
+<a href="http://www.danielsprogramming.com/?cat=15" class="tag-link-15" title="3 topics" style="font-size: 11.088235294118pt;">boost</a>
+<a href="http://www.danielsprogramming.com/?cat=3" class="tag-link-3" title="18 topics" style="font-size: 18.088235294118pt;">C++</a>
+<a href="http://www.danielsprogramming.com/?cat=47" class="tag-link-47" title="2 topics" style="font-size: 9.8529411764706pt;">c++11</a>
+<a href="http://www.danielsprogramming.com/?cat=35" class="tag-link-35" title="2 topics" style="font-size: 9.8529411764706pt;">cairo</a>
+<a href="http://www.danielsprogramming.com/?cat=6" class="tag-link-6" title="17 topics" style="font-size: 17.882352941176pt;">CMake</a>
+<a href="http://www.danielsprogramming.com/?cat=5" class="tag-link-5" title="1 topic" style="font-size: 8pt;">CUDA</a>
+<a href="http://www.danielsprogramming.com/?cat=20" class="tag-link-20" title="1 topic" style="font-size: 8pt;">Design Patterns</a>
+<a href="http://www.danielsprogramming.com/?cat=25" class="tag-link-25" title="6 topics" style="font-size: 13.661764705882pt;">driver</a>
+<a href="http://www.danielsprogramming.com/?cat=30" class="tag-link-30" title="8 topics" style="font-size: 14.691176470588pt;">Eclipse</a>
+<a href="http://www.danielsprogramming.com/?cat=53" class="tag-link-53" title="2 topics" style="font-size: 9.8529411764706pt;">ecos</a>
+<a href="http://www.danielsprogramming.com/?cat=16" class="tag-link-16" title="9 topics" style="font-size: 15.205882352941pt;">Embedded Linux</a>
+<a href="http://www.danielsprogramming.com/?cat=22" class="tag-link-22" title="1 topic" style="font-size: 8pt;">git</a>
+<a href="http://www.danielsprogramming.com/?cat=28" class="tag-link-28" title="6 topics" style="font-size: 13.661764705882pt;">IBM Rhapsody</a>
+<a href="http://www.danielsprogramming.com/?cat=36" class="tag-link-36" title="1 topic" style="font-size: 8pt;">java</a>
+<a href="http://www.danielsprogramming.com/?cat=7" class="tag-link-7" title="37 topics" style="font-size: 21.176470588235pt;">Linux</a>
+<a href="http://www.danielsprogramming.com/?cat=26" class="tag-link-26" title="5 topics" style="font-size: 12.941176470588pt;">make</a>
+<a href="http://www.danielsprogramming.com/?cat=32" class="tag-link-32" title="2 topics" style="font-size: 9.8529411764706pt;">math</a>
+<a href="http://www.danielsprogramming.com/?cat=44" class="tag-link-44" title="3 topics" style="font-size: 11.088235294118pt;">mercurial</a>
+<a href="http://www.danielsprogramming.com/?cat=9" class="tag-link-9" title="1 topic" style="font-size: 8pt;">MFC</a>
+<a href="http://www.danielsprogramming.com/?cat=49" class="tag-link-49" title="4 topics" style="font-size: 12.117647058824pt;">mingw</a>
+<a href="http://www.danielsprogramming.com/?cat=1" class="tag-link-1" title="45 topics" style="font-size: 22pt;">Programming</a>
+<a href="http://www.danielsprogramming.com/?cat=34" class="tag-link-34" title="2 topics" style="font-size: 9.8529411764706pt;">pygtk</a>
+<a href="http://www.danielsprogramming.com/?cat=11" class="tag-link-11" title="7 topics" style="font-size: 14.176470588235pt;">Python</a>
+<a href="http://www.danielsprogramming.com/?cat=33" class="tag-link-33" title="1 topic" style="font-size: 8pt;">sound</a>
+<a href="http://www.danielsprogramming.com/?cat=14" class="tag-link-14" title="3 topics" style="font-size: 11.088235294118pt;">Standard Template Library</a>
+<a href="http://www.danielsprogramming.com/?cat=52" class="tag-link-52" title="5 topics" style="font-size: 12.941176470588pt;">stm32</a>
+<a href="http://www.danielsprogramming.com/?cat=41" class="tag-link-41" title="1 topic" style="font-size: 8pt;">test</a>
+<a href="http://www.danielsprogramming.com/?cat=43" class="tag-link-43" title="8 topics" style="font-size: 14.691176470588pt;">Test driven development</a>
+<a href="http://www.danielsprogramming.com/?cat=40" class="tag-link-40" title="8 topics" style="font-size: 14.691176470588pt;">unittest</a>
+<a href="http://www.danielsprogramming.com/?cat=8" class="tag-link-8" title="7 topics" style="font-size: 14.176470588235pt;">Windows</a>
+<a href="http://www.danielsprogramming.com/?cat=38" class="tag-link-38" title="1 topic" style="font-size: 8pt;">xml</a></div>
+</li>
+		<li id="recent-posts-3" class="widget widget_recent_entries">		<h2 class="widgettitle">Recent Posts</h2>
+		<ul>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=765" title="Setting up a build environment in Windows for STM32">Setting up a build environment in Windows for STM32</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=757" title="CMake: Using 2 compilers in the same directory tree">CMake: Using 2 compilers in the same directory tree</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=752" title="bash functions">bash functions</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=746" title="Python subprocess">Python subprocess</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=732" title="Cross compiling STM32F4 in cmake">Cross compiling STM32F4 in cmake</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=728" title="Build googletest and googlemock for mingw">Build googletest and googlemock for mingw</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=724" title="ecos changing compiler toolchain">ecos changing compiler toolchain</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=719" title="Building redboot for the stm3240g_eval board">Building redboot for the stm3240g_eval board</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=714" title="Creating a patch script">Creating a patch script</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=712" title="Download folders and subdirectories">Download folders and subdirectories</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=708" title="Python mean and standard deviation">Python mean and standard deviation</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=706" title="Mercurial merge branch with default">Mercurial merge branch with default</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=703" title="CMake building on Windows with MinGW">CMake building on Windows with MinGW</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=697" title="c++11 and gcc – Some more tests">c++11 and gcc – Some more tests</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=682" title="c++11 and gcc – Lambda expressions">c++11 and gcc – Lambda expressions</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=676" title="Adding x display for another user in Linux">Adding x display for another user in Linux</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=663" title="Mercurial version control system – part 2">Mercurial version control system – part 2</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=666" title="Checking if a process is using a certain port – Linux">Checking if a process is using a certain port – Linux</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=639" title="Mercurial version control system">Mercurial version control system</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=622" title="Unity Fixture test – LedDriver – ver 3">Unity Fixture test – LedDriver – ver 3</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=616" title="Unity fixture test – LedDriver ver 2">Unity fixture test – LedDriver ver 2</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=611" title="Unity fixture test – Circular Buffer – Version 3">Unity fixture test – Circular Buffer – Version 3</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=606" title="Unity fixture test – Circular buffer – Version 2">Unity fixture test – Circular buffer – Version 2</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=600" title="Unity fixture test – Circular Buffer – Version 1">Unity fixture test – Circular Buffer – Version 1</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=595" title="Unity fixture unittest – LedDriver">Unity fixture unittest – LedDriver</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=587" title="Using eclipse and cmake">Using eclipse and cmake</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=575" title="Unittest with Unit Test Framework – sprintf test">Unittest with Unit Test Framework – sprintf test</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=568" title="Using Unity Test Framework and cmake">Using Unity Test Framework and cmake</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=563" title="Using cmake for crosscompile">Using cmake for crosscompile</a>
+						</li>
+					<li>
+				<a href="http://www.danielsprogramming.com/?p=556" title="Undelete in Linux">Undelete in Linux</a>
+						</li>
+				</ul>
+		</li>
+<li id="meta-3" class="widget widget_meta"><h2 class="widgettitle">Meta</h2>
+			<ul>
+						<li><a href="http://www.danielsprogramming.com/wp-login.php">Log in</a></li>
+			<li><a href="http://www.danielsprogramming.com/?feed=rss2" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://www.danielsprogramming.com/?feed=comments-rss2" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</li>
+<li id="archives-3" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+		<ul>
+			<li><a href="http://www.danielsprogramming.com/?m=201310" title="October 2013">October 2013</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201303" title="March 2013">March 2013</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201302" title="February 2013">February 2013</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201301" title="January 2013">January 2013</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201204" title="April 2012">April 2012</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201203" title="March 2012">March 2012</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201201" title="January 2012">January 2012</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201111" title="November 2011">November 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201110" title="October 2011">October 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201109" title="September 2011">September 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201108" title="August 2011">August 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201107" title="July 2011">July 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201105" title="May 2011">May 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201102" title="February 2011">February 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201101" title="January 2011">January 2011</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201012" title="December 2010">December 2010</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201011" title="November 2010">November 2010</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201010" title="October 2010">October 2010</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201009" title="September 2010">September 2010</a></li>
+	<li><a href="http://www.danielsprogramming.com/?m=201007" title="July 2010">July 2010</a></li>
+		</ul>
+</li>
+		
+	</ul><!-- end ul -->
+</div><!-- end sidebar --></div><!-- end container -->
+<div id="footer">
+	<div class="footer_wrapper">
+		<div class="footer_left">
+			<a href="http://www.danielsprogramming.com/" title="Daniels programming site">Daniels programming site</a> · <a href="http://imotta.cn/" title="Coogee Theme">coogee theme</a> · 2008
+		</div>
+		<div class="footer_right">
+			<a href="http://www.danielsprogramming.com/?feed=rss2" title="Subscribe Daniels programming site">RSS Feed</a> · <a href="http://wordpress.org/" title="Powered by WordPress 3.6.1">WordPress</a> · <a href="#" title="Back to top">TOP</a>
+		</div>
+	</div><!-- end footer_wrapper -->
+</div><!-- end footer -->
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shCore.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushCSharp.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushPhp.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushJScript.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushJava.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushVb.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushSql.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushXml.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushDelphi.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushPython.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushRuby.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushCss.js"></script>
+<script class="javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/shBrushCpp.js"></script>
+<script class="javascript">
+dp.SyntaxHighlighter.ClipboardSwf = 'http://www.danielsprogramming.com/wp-content/plugins/google-syntax-highlighter/Scripts/clipboard.swf';
+dp.SyntaxHighlighter.HighlightAll('code');
+</script><style>.dp-cpp .datatypes { color: #2E8B57; font-weight: bold; }</style><style>.dp-cpp .datatypes { color: #2E8B57; font-weight: bold; }</style><style>.dp-cpp .datatypes { color: #2E8B57; font-weight: bold; }</style>
+<script type="text/javascript" src="Cross%20compiling%20STM32F4%20in%20cmake_files/devicepx-jetpack.js"></script>
+</div><!-- end page -->
+
+</body></html>
